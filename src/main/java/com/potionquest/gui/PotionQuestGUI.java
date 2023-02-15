@@ -1,26 +1,3 @@
-package com.potionquest.gui;
-
-<<<<<<< HEAD
-import javax.swing.*;
-
-public class PotionQuestGUI extends JFrame {
-
-    PotionQuestGUI(){
-        setTitle("Team 5 Potion Quest Game");
-        setSize(900,700);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
-        setResizable(false);
-
-
-        Images backgroundImage = new Images("IMG/blackjack-classic-background.jpeg");
-        backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
-        setContentPane(backgroundImage);
-    }
-
-=======
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -127,5 +104,5 @@ public class PotionQuestGUI {
         }
 
     }
->>>>>>> 69b776c34da9fa2ab6dcd9c0c63aa632569ec7a0
+
 }
