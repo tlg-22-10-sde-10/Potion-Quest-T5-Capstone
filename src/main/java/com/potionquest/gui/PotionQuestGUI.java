@@ -33,8 +33,15 @@ public class PotionQuestGUI extends JFrame{
 
         //displays window
         window = new JFrame();
+        window.setTitle("Team 5 Potion Quest Game");
         window.setSize(600, 400);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //for background pics
+        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/home.jpg");
+        backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
+        window.setContentPane(backgroundImage);
+
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
         window.setVisible(true);
@@ -68,6 +75,11 @@ public class PotionQuestGUI extends JFrame{
         //container adds the
         con.add(titleNamePanel);
         con.add(startButtonPanel);
+
+
+
+
+
     }
 
 
