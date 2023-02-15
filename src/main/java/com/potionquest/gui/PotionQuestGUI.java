@@ -1,13 +1,12 @@
 package com.potionquest.gui;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class PotionQuestGUI {
+public class PotionQuestGUI extends JFrame{
     //creates window
     JFrame window;
     //creates container
@@ -26,9 +25,9 @@ public class PotionQuestGUI {
     //event listener for title screen
     TitleScreenHandler tsHandler = new TitleScreenHandler();
 
-    public static void main(String[] args) {
-        new PotionQuestGUI();
-    }
+   // public static void main(String[] args) {
+//        new PotionQuestGUI();
+//    }
 
     public PotionQuestGUI() {
 
@@ -107,4 +106,5 @@ public class PotionQuestGUI {
         }
 
     }
+
 }
