@@ -1,4 +1,4 @@
-package gui;
+package com.potionquest.gui;
 
 
 import javax.swing.*;
