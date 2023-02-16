@@ -1,12 +1,9 @@
 package com.potionquest.gui;
 
-import com.potionquest.game.Game;
-import com.potionquest.game.Location;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class WhitbyVillageGUI extends JFrame {
+public class LangtoftGUI extends JFrame {
     JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
     JButton northButton,eastButton,westButton,southButton;
@@ -14,8 +11,8 @@ public class WhitbyVillageGUI extends JFrame {
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-    public WhitbyVillageGUI() {
-        setTitle("WhitbyVillage");
+    public LangtoftGUI() {
+        setTitle("LANGTOFT VILLAGE");
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +33,7 @@ public class WhitbyVillageGUI extends JFrame {
         itemsAvailablePanel.setBounds(0,50,800,40);
         itemsAvailablePanel.setBackground(Color.BLACK);
 
-        itemsLabel = new JLabel("ITEMS AVAILABLE: "+"{Sword, Knives}"); //text label
+        itemsLabel = new JLabel("ITEMS AVAILABLE: "+"{Sword, Trinket, Bread, Potion}"); //text label
         itemsLabel.setForeground(Color.GREEN);// text color
         itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
         itemsAvailablePanel.add(itemsLabel);
@@ -51,14 +48,14 @@ public class WhitbyVillageGUI extends JFrame {
         inventoryLabel.setForeground(Color.RED);// text color
         inventoryLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
 
-        healthLabel = new JLabel("HEALTH: "+"100/100"); //text label
+        healthLabel = new JLabel("HEALTH: "+"91/100"); //text label
         healthLabel.setForeground(Color.RED);// text color
         healthLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
 
 
 
         // titleName
-        titleNameLabel = new JLabel("WHITBY VILLAGE");
+        titleNameLabel = new JLabel("LANGTOFT VILLAGE");
         titleNameLabel.setForeground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
         titleNameLabel.setFont(new Font("Arial",Font.BOLD,40));
@@ -68,9 +65,7 @@ public class WhitbyVillageGUI extends JFrame {
         // status labels
 
         // textArea for text
-        description = new JTextArea("Whitby is a quaint small village near a dense forest. A few homes" +
-                "line in the outskirts of town with the village tavern in the middle. To the north of the village " +
-                "there is a forest and to the south there is a Mountain Pass!");
+        description = new JTextArea("More to come");
         description.setForeground(Color.BLACK);
         description.setBounds(120,10,600,60);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
