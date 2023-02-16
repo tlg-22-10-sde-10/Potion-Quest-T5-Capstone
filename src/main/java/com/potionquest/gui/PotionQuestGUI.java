@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class PotionQuestGUI extends JFrame{
@@ -26,7 +27,7 @@ public class PotionQuestGUI extends JFrame{
     TitleScreenHandler tsHandler = new TitleScreenHandler();
     WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
 
-    public PotionQuestGUI() {
+    public PotionQuestGUI() throws IOException {
 
         //displays window
         window = new JFrame();
