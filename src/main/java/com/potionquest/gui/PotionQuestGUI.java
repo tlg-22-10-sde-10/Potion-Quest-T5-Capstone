@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class PotionQuestGUI extends JFrame{
@@ -26,7 +27,7 @@ public class PotionQuestGUI extends JFrame{
     TitleScreenHandler tsHandler = new TitleScreenHandler();
     WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
 
-    public PotionQuestGUI() {
+    public PotionQuestGUI() throws IOException {
 
         //displays window
         window = new JFrame();
@@ -75,7 +76,7 @@ public class PotionQuestGUI extends JFrame{
                 "\nYour game will end if your health goes to 0 or you do not complete \n" +
                 "\nthe quest in 7 minutes.");
 
-        mainText.setFont(new Font("Comic Sans", Font.BOLD,17));
+        mainText.setFont(new Font("Comic Sans", Font.BOLD,15));
         mainText.setForeground(Color.WHITE);
         mainText.setOpaque(false);
         mainTextPanel.add(mainText,BorderLayout.CENTER);
