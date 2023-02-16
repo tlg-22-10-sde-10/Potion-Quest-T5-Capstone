@@ -136,7 +136,6 @@ public class PotionQuestGUI extends JFrame{
         mainTextArea.setLineWrap(true);
         mainTextPanel.add(mainTextArea);
 
-        //comment for pushing
 
     }
 
