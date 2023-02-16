@@ -49,6 +49,8 @@ public class PotionQuestGUI extends JFrame{
 
 
 
+
+
         con = window.getContentPane();
 
         //creates title to go in container(PANEL)
