@@ -24,28 +24,24 @@ public class PotionQuestGUI extends JFrame{
     JTextArea mainTextArea;
     //event listener for title screen
     TitleScreenHandler tsHandler = new TitleScreenHandler();
-
-     WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
-
-   // public static void main(String[] args) {
-//        new PotionQuestGUI();
-//    }
+    WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
 
     public PotionQuestGUI() {
 
         //displays window
         window = new JFrame();
         window.setTitle("Team 5 Potion Quest Game");
-        window.setSize(600, 600);
+        window.setSize(800, 800);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //for background pics
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/home.jpg");
-        backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
-        window.setContentPane(backgroundImage);
-
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
+
+        //for background pics
+//        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/home.jpg");
+//        backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
+//        window.setContentPane(backgroundImage);
+
+
 
         con = window.getContentPane();
 
@@ -54,20 +50,21 @@ public class PotionQuestGUI extends JFrame{
         titleNamePanel.setBounds(100, 100, 600, 150);
         titleNamePanel.setBackground(Color.BLACK);
         titleNameLabel = new JLabel("POTION QUEST");
-        titleNameLabel.setForeground(Color.white);
+        titleNameLabel.setForeground(Color.ORANGE);
         titleNameLabel.setFont(titleFont);
 
 
         //creates button to go in container(PANEL)
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(300, 400, 200, 100);
+        startButtonPanel.setBounds(500, 620, 200, 100);
         startButtonPanel.setBackground(Color.BLACK);
 
         //gives button a title
         startButton = new JButton("START GAME");
         startButton.setBackground(Color.BLACK);
-        startButton.setForeground(Color.WHITE);
+        startButton.setForeground(Color.GREEN);
         startButton.setFont(normalFont);
+
         //onClick will call tsHandler function
         startButton.addActionListener(tsHandler);
 
@@ -81,7 +78,6 @@ public class PotionQuestGUI extends JFrame{
 
 
         window.setVisible(true);
-
     }
 
 
