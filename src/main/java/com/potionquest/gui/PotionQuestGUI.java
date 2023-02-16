@@ -25,6 +25,8 @@ public class PotionQuestGUI extends JFrame{
     //event listener for title screen
     TitleScreenHandler tsHandler = new TitleScreenHandler();
 
+     WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
+
    // public static void main(String[] args) {
 //        new PotionQuestGUI();
 //    }
@@ -34,7 +36,7 @@ public class PotionQuestGUI extends JFrame{
         //displays window
         window = new JFrame();
         window.setTitle("Team 5 Potion Quest Game");
-        window.setSize(600, 400);
+        window.setSize(600, 600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //for background pics
@@ -44,7 +46,7 @@ public class PotionQuestGUI extends JFrame{
 
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
-        window.setVisible(true);
+
         con = window.getContentPane();
 
         //creates title to go in container(PANEL)
@@ -78,7 +80,7 @@ public class PotionQuestGUI extends JFrame{
 
 
 
-
+        window.setVisible(true);
 
     }
 
@@ -112,9 +114,8 @@ public class PotionQuestGUI extends JFrame{
 
         public void actionPerformed(ActionEvent e) {
             //once button is pressed the game will go to next page
-            createGameScreen();
-
-
+            window.setVisible(false);
+            whitByFrame.setVisible(true);
         }
 
     }
