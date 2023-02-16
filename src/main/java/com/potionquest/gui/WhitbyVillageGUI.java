@@ -37,18 +37,20 @@ public class WhitbyVillageGUI extends JFrame {
         // player info panel
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(0,0,800,100);
-        titleNamePanel.setOpaque(true);
+        titleNamePanel.setOpaque(false);
 
         itemsAvailablePanel = new JPanel();
-        itemsAvailablePanel.setBounds(0,50,800,40);
-        itemsAvailablePanel.setBackground(Color.BLACK);
+        itemsAvailablePanel.setBounds(0,65,800,60);
+        itemsAvailablePanel.setOpaque(false);
 
         itemsLabel = new JLabel("ITEMS AVAILABLE: "
                 +Game.getGameInstance().getPlayer().getCurrentLocation().getItems().stream().map(p -> p.getName())
                 .collect(Collectors.toList()));
         //text label
-        itemsLabel.setForeground(Color.ORANGE);// text color
-        itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        itemsLabel.setForeground(Color.BLACK);// text color
+        itemsLabel.setBackground(Color.ORANGE);
+        itemsLabel.setOpaque(true);
+        itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,18));
         itemsAvailablePanel.add(itemsLabel);
 
 
@@ -68,7 +70,8 @@ public class WhitbyVillageGUI extends JFrame {
 
         // titleName
         titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
-        titleNameLabel.setForeground(Color.ORANGE);
+        titleNameLabel.setForeground(Color.BLUE);
+        titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
         titleNameLabel.setFont(new Font("Arial",Font.BOLD,40));
         titleNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -78,23 +81,23 @@ public class WhitbyVillageGUI extends JFrame {
 
         description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
-        description.setBounds(120,10,600,60);
+        description.setBackground(Color.ORANGE);
+        description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-        description.setOpaque(false);
-//        description.setBackground(Color.CYAN);
+//        description.setOpaque(false);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
         // creates panel for text area
         descriptionPanel = new JPanel();
-        descriptionPanel.setBounds(0,100,800,150);
-//        descriptionPanel.setBackground(Color.GREEN);
+        descriptionPanel.setBounds(10,100,800,150);
+        descriptionPanel.setOpaque(false);
         descriptionPanel.add(description);
 
         // footer for health and inventory
         footer = new JPanel();
         footer.setBounds(0,700,800,40);
-        footer.setBackground(Color.BLUE);
+        footer.setBackground(Color.ORANGE);
         footer.setLayout(new GridLayout(1, 3));
         footer.add(timeLabel);
         footer.add(inventoryLabel);
