@@ -173,13 +173,13 @@ public class Location {
 
     public String description() {
         String display = new StringBuilder()
-                .append("\n").append(getDescription())
-                .append("\n").append(characterDescription())
-                .append("\n").append("You can find these items here: ").append(getItems()
+                .append(" ").append(getDescription())
+                .append(" ").append(characterDescription())
+                .append(" ").append("You can find these items here: ").append(getItems()
                         .stream()
                         .map(p -> p.getName())
                         .collect(Collectors.toList()))
-                .append("\n").append(monsterDescription()).toString();
+                .append(" ").append(monsterDescription()).toString();
         return display;
     }
 }
