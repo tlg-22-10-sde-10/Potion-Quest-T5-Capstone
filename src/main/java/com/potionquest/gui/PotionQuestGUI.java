@@ -53,31 +53,35 @@ public class PotionQuestGUI extends JFrame{
         //creates title to go in container(PANEL)
         titleNamePanel = new JPanel();
         titleNamePanel.setOpaque(false);
-        titleNameLabel = new JLabel("  WELCOME TO POTION QUEST");
-        titleNameLabel.setForeground(Color.white);
-
+        titleNameLabel = new JLabel("POTION QUEST");
         titleNamePanel.setBounds(100, 100, 600, 150);
         //titleNamePanel.setBackground(Color.BLACK);
         titleNamePanel.setOpaque(false);
-        titleNameLabel = new JLabel("  WELCOME TO POTION QUEST");
         titleNameLabel.setForeground(Color.ORANGE);
-
         titleNameLabel.setFont(titleFont);
 
         //create story
         mainTextPanel=new JPanel();
-        mainTextPanel.setBounds(200, 200, 1000, 800);
-        mainTextPanel.setForeground(Color.white);
-        mainTextPanel.setFont(normalFont);
-        JTextArea mainText=new JTextArea("This game will allow you to go on an adventure to get the potion to cure your sister!\n" +
-                "During the quest you will be faced with many choices and obstacles.\n" +
-                "Choose wisely ........\n" +
-                "Your life and your sister's life DEPENDS on it!\n" +
-                "Complete the quest by traveling to Langtoft Village\n" +
-                "and bringing back the potion to cure your sister's illness.\n" +
-                "Your game will end if your health goes to 0 or you do not complete the quest in 7 minutes.");
-        mainTextPanel.add(mainText,BorderLayout.CENTER);
+        mainTextPanel.setBounds(40, 230, 700, 400);
         mainTextPanel.setOpaque(false);
+
+        JTextArea mainText=new JTextArea(
+                "This game will allow you to go on an adventure to get the potion to cure your sister!\n" +
+                "\nDuring the quest you will be faced with many choices and obstacles.\n" +
+                "\nChoose wisely ........\n" +
+                "\nYour life and your sister's life DEPENDS on it!\n" +
+                "\nComplete the quest by traveling to Langtoft Village\n" +
+                "\nand bringing back the potion to cure your sister's illness.\n" +
+                "\nYour game will end if your health goes to 0 or you do not complete \n" +
+                "\nthe quest in 7 minutes.");
+
+        mainText.setFont(new Font("Comic Sans", Font.BOLD,17));
+        mainText.setForeground(Color.WHITE);
+        mainText.setOpaque(false);
+        mainTextPanel.add(mainText,BorderLayout.CENTER);
+        mainTextPanel.setFont(normalFont);
+
+
 
 
 
@@ -87,6 +91,7 @@ public class PotionQuestGUI extends JFrame{
         startButtonPanel.setBounds(500, 620, 200, 100);
 
         startButtonPanel.setBackground(Color.BLACK);
+        startButtonPanel.setOpaque(false);
 
         //gives button a title
         startButton = new JButton("START GAME");
