@@ -21,7 +21,7 @@ public class WhitbyVillageGUI extends JFrame {
         setResizable(false);
 
 
-        Image backgroundImage = new Image("src/main/resources/images/potionStarting.png");
+        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/potionStarting.png");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
@@ -66,8 +66,6 @@ public class WhitbyVillageGUI extends JFrame {
         footer = new JPanel();
         footer.setBounds(0,700,800,100);
         footer.setBackground(Color.BLUE);
-
-
 
         // adds panel to the frame
         add(playerStatusDisplayPanel);
