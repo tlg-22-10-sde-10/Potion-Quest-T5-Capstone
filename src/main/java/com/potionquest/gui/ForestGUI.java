@@ -1,12 +1,9 @@
 package com.potionquest.gui;
 
-import com.potionquest.game.Game;
-import com.potionquest.game.Location;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class WhitbyVillageGUI extends JFrame {
+public class ForestGUI extends JFrame {
     JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
     JButton northButton,eastButton,westButton,southButton;
@@ -14,8 +11,8 @@ public class WhitbyVillageGUI extends JFrame {
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-    public WhitbyVillageGUI() {
-        setTitle("WhitbyVillage");
+    public ForestGUI() {
+        setTitle("FOREST");
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +33,7 @@ public class WhitbyVillageGUI extends JFrame {
         itemsAvailablePanel.setBounds(0,50,800,40);
         itemsAvailablePanel.setBackground(Color.BLACK);
 
-        itemsLabel = new JLabel("ITEMS AVAILABLE: "+"{Sword, Knives}"); //text label
+        itemsLabel = new JLabel("ITEMS AVAILABLE: "+"{Sword, Trinket, Bread}"); //text label
         itemsLabel.setForeground(Color.GREEN);// text color
         itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
         itemsAvailablePanel.add(itemsLabel);
@@ -68,9 +65,7 @@ public class WhitbyVillageGUI extends JFrame {
         // status labels
 
         // textArea for text
-        description = new JTextArea("Whitby is a quaint small village near a dense forest. A few homes" +
-                "line in the outskirts of town with the village tavern in the middle. To the north of the village " +
-                "there is a forest and to the south there is a Mountain Pass!");
+        description = new JTextArea("More to come");
         description.setForeground(Color.BLACK);
         description.setBounds(120,10,600,60);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
@@ -100,10 +95,10 @@ public class WhitbyVillageGUI extends JFrame {
         movementPanel.setBackground(Color.BLACK);
         movementPanel.setLayout(new GridLayout(2, 1));
 
-        northButton = new JButton("GO NORTH");
-        northButton.setForeground(Color.ORANGE);
-        northButton.setActionCommand("north");
-        northButton.setBackground(Color.GREEN);
+        eastButton = new JButton("GO EAST");
+        eastButton.setForeground(Color.ORANGE);
+        eastButton.setActionCommand("east");
+        eastButton.setBackground(Color.GREEN);
 
         southButton = new JButton("GO SOUTH");
         southButton.setForeground(Color.ORANGE);
@@ -111,7 +106,7 @@ public class WhitbyVillageGUI extends JFrame {
         southButton.setBackground(Color.GREEN);
 
         //Move to location buttons
-        movementPanel.add(northButton);
+        movementPanel.add(eastButton);
         movementPanel.add(southButton);
 
 
