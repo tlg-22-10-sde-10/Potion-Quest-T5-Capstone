@@ -36,11 +36,11 @@ public class PotionQuestGUI extends JFrame{
         //displays window
         window = new JFrame();
         window.setTitle("Team 5 Potion Quest Game");
-        window.setSize(600, 600);
+        window.setSize(1280, 1024);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //for background pics
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/home.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/landing.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         window.setContentPane(backgroundImage);
 
@@ -51,16 +51,34 @@ public class PotionQuestGUI extends JFrame{
 
         //creates title to go in container(PANEL)
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(100, 100, 600, 150);
-        titleNamePanel.setBackground(Color.BLACK);
-        titleNameLabel = new JLabel("POTION QUEST");
+        titleNamePanel.setBounds(200, 100, 800, 150);
+
+
+        titleNamePanel.setOpaque(false);
+        titleNameLabel = new JLabel("  WELCOME TO POTION QUEST");
         titleNameLabel.setForeground(Color.white);
         titleNameLabel.setFont(titleFont);
+
+        //create story
+        mainTextPanel=new JPanel();
+        mainTextPanel.setBounds(200, 200, 1000, 800);
+        mainTextPanel.setForeground(Color.white);
+        mainTextPanel.setFont(normalFont);
+        JTextArea mainText=new JTextArea("This game will allow you to go on an adventure to get the potion to cure your sister!\n" +
+                "During the quest you will be faced with many choices and obstacles.\n" +
+                "Choose wisely ........\n" +
+                "Your life and your sister's life DEPENDS on it!\n" +
+                "Complete the quest by traveling to Langtoft Village\n" +
+                "and bringing back the potion to cure your sister's illness.\n" +
+                "Your game will end if your health goes to 0 or you do not complete the quest in 7 minutes.");
+        mainTextPanel.add(mainText,BorderLayout.CENTER);
+        mainTextPanel.setOpaque(false);
+
 
 
         //creates button to go in container(PANEL)
         startButtonPanel = new JPanel();
-        startButtonPanel.setBounds(300, 400, 200, 100);
+        startButtonPanel.setBounds(300, 800, 200, 100);
         startButtonPanel.setBackground(Color.BLACK);
 
         //gives button a title
@@ -76,6 +94,7 @@ public class PotionQuestGUI extends JFrame{
 
         //container adds the
         con.add(titleNamePanel);
+        con.add(mainTextPanel);
         con.add(startButtonPanel);
 
 
