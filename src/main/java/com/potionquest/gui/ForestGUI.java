@@ -123,20 +123,21 @@ public class ForestGUI extends JFrame {
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
-        northButton = new JButton("GO NORTH");
-        northButton.setForeground(Color.ORANGE);
-        northButton.setActionCommand("forest-north");
-        northButton.setBackground(Color.GREEN);
-
-        northButton.addActionListener(eventHandler);
-
         southButton = new JButton("GO SOUTH");
         southButton.setForeground(Color.ORANGE);
         southButton.setActionCommand("forest-south");
         southButton.setBackground(Color.GREEN);
+
         southButton.addActionListener(eventHandler);
 
-        movementPanel.add(northButton);
+        eastButton = new JButton("GO EAST");
+        eastButton.setForeground(Color.ORANGE);
+        eastButton.setActionCommand("forest-east");
+        eastButton.setBackground(Color.GREEN);
+
+        eastButton.addActionListener(eventHandler);
+
+        movementPanel.add(eastButton);
         movementPanel.add(southButton);
 
         // adds panel to the frame
