@@ -10,7 +10,7 @@ public class Game {
     private static Game gameInstance = null;
     private Player player;
     private Map<String, Item> items;
-    private Map<String, Location> locations;
+    private static Map<String, Location> locations;
     private Map<String, Monster> monsters;
     private Map<String, Characters> characters;
 
@@ -142,7 +142,7 @@ public class Game {
         this.items = items;
     }
 
-    public Map<String, Location> getLocations() {
+    public static Map<String, Location> getLocations() {
         return locations;
     }
 

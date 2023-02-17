@@ -18,15 +18,16 @@ public class MountainPassGUI extends JFrame {
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public MountainPassGUI() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Mountain Pass"));
         (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        setTitle("Forest GUI");
+        setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/mountainPass.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/mountainPass.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
@@ -65,7 +66,7 @@ public class MountainPassGUI extends JFrame {
 
 
         // titleName
-        titleNameLabel = new JLabel("MountainPass");
+        titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         titleNameLabel.setForeground(Color.BLUE);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
