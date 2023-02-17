@@ -119,6 +119,9 @@ public class PotionQuestGUI extends JFrame {
         con.add(titleNamePanel);
         con.add(mainTextPanel);
         con.add(startButtonPanel);
+
+        con.add(new Timer());
+
         window.setVisible(true);
 
     }

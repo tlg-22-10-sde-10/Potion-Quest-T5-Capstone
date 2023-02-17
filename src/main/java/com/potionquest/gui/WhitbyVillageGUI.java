@@ -90,11 +90,15 @@ public class WhitbyVillageGUI extends JFrame {
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
+
+
         // creates panel for text area
         descriptionPanel = new JPanel();
         descriptionPanel.setBounds(10,100,800,150);
         descriptionPanel.setOpaque(false);
         descriptionPanel.add(description);
+
+
 
         // footer for health and inventory
         footer = new JPanel();
