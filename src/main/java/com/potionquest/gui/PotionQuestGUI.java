@@ -1,12 +1,12 @@
 package com.potionquest.gui;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+
 public class PotionQuestGUI extends JFrame {
     //creates window
-    JFrame window;
+    static JFrame window;
     //creates container
     Container con;
     //creates the panel that our info sits in
@@ -23,22 +23,34 @@ public class PotionQuestGUI extends JFrame {
     //event listener for title screen
     EventHandler eventHandler = new EventHandler();
 
-    WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
+    private static WhitbyVillageGUI whitByFrame;
+    private static ForestGUI forestGUI;
+    private static MountainPassGUI mountainPassGUI;
+    static {
+        try {
+            whitByFrame = new WhitbyVillageGUI();
+            mountainPassGUI = new MountainPassGUI();
+            forestGUI = new ForestGUI();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public PotionQuestGUI() throws IOException {
-
         //displays window
-        setTitle("Team 5 Potion Quest Game");
-        setSize(800, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setBackground(Color.BLACK);
-        setLayout(null);
+        window = new JFrame();
+        //displays window
+        window.setTitle("Team 5 Potion Quest Game");
+        window.setSize(800, 800);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.getContentPane().setBackground(Color.BLACK);
+        window.setLayout(null);
 
         //for background pics
         PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/landing.jpg");
         backgroundImage.setBounds(0, 0, this.getWidth(), this.getHeight());
-        setContentPane(backgroundImage);
-        getContentPane();
+        window.setContentPane(backgroundImage);
+        con = window.getContentPane();
 
         //creates title to go in container(PANEL)
         titleNamePanel = new JPanel();
@@ -94,10 +106,24 @@ public class PotionQuestGUI extends JFrame {
         startButtonPanel.add(startButton);
 
         //container adds the
-        add(titleNamePanel);
-        add(mainTextPanel);
-        add(startButtonPanel);
-        setVisible(true);
+        con.add(titleNamePanel);
+        con.add(mainTextPanel);
+        con.add(startButtonPanel);
+        window.setVisible(true);
     }
 
+    public static void actionForStartButton() {
+        window.setVisible(false);
+        whitByFrame.setVisible(true);
+    }
+
+    public static void actionForNorthButton() {
+        whitByFrame.setVisible(false);
+        forestGUI.setVisible(true);
+    }
+
+    public static void actionForSouthButton() {
+        whitByFrame.setVisible(false);
+        mountainPassGUI.setVisible(true);
+    }
 }
