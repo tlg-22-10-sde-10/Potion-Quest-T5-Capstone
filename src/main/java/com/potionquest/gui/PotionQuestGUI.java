@@ -1,6 +1,8 @@
 package com.potionquest.gui;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
@@ -111,6 +113,7 @@ public class PotionQuestGUI extends JFrame {
         con.add(mainTextPanel);
         con.add(startButtonPanel);
         window.setVisible(true);
+
     }
 
     public static void actionForStartButton() {
