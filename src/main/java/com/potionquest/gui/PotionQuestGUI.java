@@ -26,11 +26,18 @@ public class PotionQuestGUI extends JFrame {
     private static WhitbyVillageGUI whitByFrame;
     private static ForestGUI forestGUI;
     private static MountainPassGUI mountainPassGUI;
+    private static RiverNorthGUI riverNorthGUI;
+    private static RiverSouthGUI riverSouthGUI;
+    private static LangtoftGUI langtoftGUI;
     static {
         try {
             whitByFrame = new WhitbyVillageGUI();
             mountainPassGUI = new MountainPassGUI();
             forestGUI = new ForestGUI();
+            riverNorthGUI = new RiverNorthGUI();
+            riverSouthGUI = new RiverSouthGUI();
+            langtoftGUI = new LangtoftGUI();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -117,13 +124,64 @@ public class PotionQuestGUI extends JFrame {
         whitByFrame.setVisible(true);
     }
 
-    public static void actionForNorthButton() {
+    public static void actionForWhitbyNorthButton() {
         whitByFrame.setVisible(false);
         forestGUI.setVisible(true);
     }
-
-    public static void actionForSouthButton() {
+    public static void actionForWhitbySouthButton() {
         whitByFrame.setVisible(false);
         mountainPassGUI.setVisible(true);
     }
+
+    public static void actionForForestEast() {
+        forestGUI.setVisible(false);
+        riverNorthGUI.setVisible(true);
+    }
+
+    public static void actionForForestSouth() {
+        forestGUI.setVisible(false);
+        whitByFrame.setVisible(true);
+
+    }
+
+    public static void actionForMountainPassNorth() {
+        mountainPassGUI.setVisible(false);
+        whitByFrame.setVisible(true);
+
+    }
+    public static void actionForMountainPassEast() {
+        mountainPassGUI.setVisible(false);
+        riverSouthGUI.setVisible(true);
+    }
+
+    public static void actionForRiverSouthNorth() {
+        riverSouthGUI.setVisible(false);
+        langtoftGUI.setVisible(true);
+
+    }
+    public static void actionForRiverSouthWest() {
+        riverSouthGUI.setVisible(false);
+        mountainPassGUI.setVisible(true);
+    }
+
+    // River North
+    public static void actionForRiverNorthWest() {
+        riverNorthGUI.setVisible(false);
+        forestGUI.setVisible(true);
+    }
+    public static void actionForRiverNorthSouth() {
+        riverNorthGUI.setVisible(false);
+        langtoftGUI.setVisible(true);
+    }
+    // langtoft village
+    public static void actionForLangtoftVillageNorth() {
+        langtoftGUI.setVisible(false);
+        riverNorthGUI.setVisible(true);
+    }
+    public static void actionForLangtoftVillageSouth() {
+        langtoftGUI.setVisible(false);
+        riverSouthGUI.setVisible(true);
+    }
+
+
 }

@@ -19,10 +19,40 @@ public class EventHandler implements ActionListener {
 
             // make player's location is changed to forest location
         } else if(actionPerformedByUser.equalsIgnoreCase("north")) {
-            PotionQuestGUI.actionForNorthButton();
+            PotionQuestGUI.actionForWhitbyNorthButton();
 
         } else if(actionPerformedByUser.equalsIgnoreCase("south")) {
-            PotionQuestGUI.actionForSouthButton();
+            PotionQuestGUI.actionForWhitbySouthButton();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("forest-south")) {
+            PotionQuestGUI.actionForForestSouth();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("forest-east")) {
+            PotionQuestGUI.actionForForestEast();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("langtoft-north")) {
+            PotionQuestGUI.actionForLangtoftVillageNorth();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("langtoft-south")) {
+            PotionQuestGUI.actionForLangtoftVillageSouth();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("mountain-north")) {
+            PotionQuestGUI.actionForMountainPassNorth();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("mountain-east")) {
+            PotionQuestGUI.actionForMountainPassEast();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("river-south-north")) {
+            PotionQuestGUI.actionForRiverSouthNorth();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("river-south-west")) {
+            PotionQuestGUI.actionForRiverSouthWest();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("river-north-south")) {
+            PotionQuestGUI.actionForRiverNorthSouth();
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("river-north-west")) {
+            PotionQuestGUI.actionForRiverNorthWest();
 
         }
     }
