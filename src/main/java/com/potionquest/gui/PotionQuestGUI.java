@@ -1,15 +1,12 @@
 package com.potionquest.gui;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-public class PotionQuestGUI extends JFrame{
+public class PotionQuestGUI extends JFrame {
     //creates window
-    JFrame window;
+    static JFrame window;
     //creates container
     Container con;
     //creates the panel that our info sits in
@@ -24,19 +21,26 @@ public class PotionQuestGUI extends JFrame{
     //Text Area
     JTextArea mainTextArea;
     //event listener for title screen
-    TitleScreenHandler tsHandler = new TitleScreenHandler();
-    WhitbyVillageGUI whitByFrame = new WhitbyVillageGUI();
+    EventHandler eventHandler = new EventHandler();
+
+    private static WhitbyVillageGUI whitByFrame;
+    private static ForestGUI forestGUI;
+    private static MountainPassGUI mountainPassGUI;
+    static {
+        try {
+            whitByFrame = new WhitbyVillageGUI();
+            mountainPassGUI = new MountainPassGUI();
+            forestGUI = new ForestGUI();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public PotionQuestGUI() throws IOException {
-
         //displays window
         window = new JFrame();
+        //displays window
         window.setTitle("Team 5 Potion Quest Game");
-
-
-
-
-
         window.setSize(800, 800);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
@@ -44,12 +48,8 @@ public class PotionQuestGUI extends JFrame{
 
         //for background pics
         PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/landing.jpg");
-        backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
+        backgroundImage.setBounds(0, 0, this.getWidth(), this.getHeight());
         window.setContentPane(backgroundImage);
-
-
-
-
 
         con = window.getContentPane();
 
@@ -64,28 +64,25 @@ public class PotionQuestGUI extends JFrame{
         titleNameLabel.setFont(titleFont);
 
         //create story
-        mainTextPanel=new JPanel();
+        mainTextPanel = new JPanel();
         mainTextPanel.setBounds(40, 230, 700, 400);
         mainTextPanel.setOpaque(false);
 
-        JTextArea mainText=new JTextArea(
+        JTextArea mainText = new JTextArea(
                 "This game will allow you to go on an adventure to get the potion to cure your sister!\n" +
-                "\nDuring the quest you will be faced with many choices and obstacles.\n" +
-                "\nChoose wisely ........\n" +
-                "\nYour life and your sister's life DEPENDS on it!\n" +
-                "\nComplete the quest by traveling to Langtoft Village\n" +
-                "\nand bringing back the potion to cure your sister's illness.\n" +
-                "\nYour game will end if your health goes to 0 or you do not complete \n" +
-                "\nthe quest in 7 minutes.");
+                        "\nDuring the quest you will be faced with many choices and obstacles.\n" +
+                        "\nChoose wisely ........\n" +
+                        "\nYour life and your sister's life DEPENDS on it!\n" +
+                        "\nComplete the quest by traveling to Langtoft Village\n" +
+                        "\nand bringing back the potion to cure your sister's illness.\n" +
+                        "\nYour game will end if your health goes to 0 or you do not complete \n" +
+                        "\nthe quest in 7 minutes.");
 
-        mainText.setFont(new Font("Comic Sans", Font.BOLD,15));
+        mainText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         mainText.setForeground(Color.WHITE);
         mainText.setOpaque(false);
-        mainTextPanel.add(mainText,BorderLayout.CENTER);
+        mainTextPanel.add(mainText, BorderLayout.CENTER);
         mainTextPanel.setFont(normalFont);
-
-
-
 
 
         //creates button to go in container(PANEL)
@@ -103,7 +100,8 @@ public class PotionQuestGUI extends JFrame{
         startButton.setFont(normalFont);
 
         //onClick will call tsHandler function
-        startButton.addActionListener(tsHandler);
+        startButton.addActionListener(eventHandler);
+        startButton.setActionCommand("start");
 
         titleNamePanel.add(titleNameLabel);
         startButtonPanel.add(startButton);
@@ -112,45 +110,21 @@ public class PotionQuestGUI extends JFrame{
         con.add(titleNamePanel);
         con.add(mainTextPanel);
         con.add(startButtonPanel);
-
-
-
         window.setVisible(true);
     }
 
-
-//    =================================GAME SCREEN================================
-
-    public void createGameScreen() {
-
-        titleNamePanel.setVisible(false);
-        startButtonPanel.setVisible(false);
-
-        mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(100, 100, 600, 250);
-        mainTextPanel.setBackground(Color.blue);
-        con.add(mainTextPanel);
-
-        mainTextArea = new JTextArea();
-        mainTextArea.setBounds(100, 100, 600, 250);
-        mainTextArea.setBackground(Color.BLACK);
-        mainTextArea.setForeground(Color.WHITE);
-        mainTextArea.setFont(normalFont);
-        mainTextArea.setLineWrap(true);
-        mainTextPanel.add(mainTextArea);
-
-
+    public static void actionForStartButton() {
+        window.setVisible(false);
+        whitByFrame.setVisible(true);
     }
 
-
-    public class TitleScreenHandler implements ActionListener {
-
-        public void actionPerformed(ActionEvent e) {
-            //once button is pressed the game will go to next page
-            window.setVisible(false);
-            whitByFrame.setVisible(true);
-        }
-
+    public static void actionForNorthButton() {
+        whitByFrame.setVisible(false);
+        forestGUI.setVisible(true);
     }
 
+    public static void actionForSouthButton() {
+        whitByFrame.setVisible(false);
+        mountainPassGUI.setVisible(true);
+    }
 }

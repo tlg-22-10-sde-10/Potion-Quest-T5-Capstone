@@ -16,8 +16,10 @@ public class WhitbyVillageGUI extends JFrame {
     JButton northButton,eastButton,westButton,southButton,pickButton,dropButton;
     JTextArea description;
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
+    EventHandler eventHandler = new EventHandler();
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
+
     public WhitbyVillageGUI() throws IOException {
         Game.createGameInstance();
         Game.getGameInstance().getPlayer().getCurrentLocation();
@@ -56,16 +58,16 @@ public class WhitbyVillageGUI extends JFrame {
 
         // labels for display panel
         timeLabel = new JLabel("TIME: "+Timer.getTimeRemainingMin()); //text label
-        timeLabel.setForeground(Color.RED);// text color
-        timeLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        timeLabel.setForeground(Color.BLACK);// text color
+        timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
         inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory()); //text label
-        inventoryLabel.setForeground(Color.RED);// text color
-        inventoryLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        inventoryLabel.setForeground(Color.BLACK);// text color
+        inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
         healthLabel = new JLabel("HEALTH: "+Game.getGameInstance().getPlayer().getHealth()); //text label
-        healthLabel.setForeground(Color.RED);// text color
-        healthLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        healthLabel.setForeground(Color.BLACK);// text color
+        healthLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
 
         // titleName
@@ -127,25 +129,19 @@ public class WhitbyVillageGUI extends JFrame {
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
-        westButton = new JButton("GO WEST");
-        westButton.setBackground(Color.GREEN);
-        westButton.setForeground(Color.ORANGE);
-        westButton.setActionCommand("west");
-
         northButton = new JButton("GO NORTH");
         northButton.setForeground(Color.ORANGE);
         northButton.setActionCommand("north");
         northButton.setBackground(Color.GREEN);
 
-        eastButton = new JButton("GO EAST");
-        eastButton.setForeground(Color.ORANGE);
-        eastButton.setActionCommand("east");
-        eastButton.setBackground(Color.GREEN);
+        northButton.addActionListener(eventHandler);
 
         southButton = new JButton("GO SOUTH");
         southButton.setForeground(Color.ORANGE);
         southButton.setActionCommand("south");
         southButton.setBackground(Color.GREEN);
+        southButton.addActionListener(eventHandler);
+
         movementPanel.add(northButton);
         movementPanel.add(southButton);
 
@@ -156,6 +152,7 @@ public class WhitbyVillageGUI extends JFrame {
         add(footer);
         add(movementPanel);
         add(pickAndDropPanel);
+
         setVisible(false);
     }
 }

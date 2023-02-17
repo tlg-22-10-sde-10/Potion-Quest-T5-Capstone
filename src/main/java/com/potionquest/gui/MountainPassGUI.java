@@ -2,16 +2,17 @@ package com.potionquest.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class MountainPassGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton northButton,eastButton,westButton,southButton;
+    JButton northButton,eastButton,westButton,southButton,pickButton,dropButton;
     JTextArea description;
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
+    EventHandler eventHandler = new EventHandler();
 
-    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-    public MountainPassGUI() {
+    public MountainPassGUI() throws IOException {
         setTitle("MOUNTAIN PASS");
         setSize(800,800);
         setLocationRelativeTo(null);
