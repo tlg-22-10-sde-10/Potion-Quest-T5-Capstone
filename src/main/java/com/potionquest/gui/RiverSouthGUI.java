@@ -18,15 +18,17 @@ public class RiverSouthGUI extends JFrame {
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public RiverSouthGUI() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+
         (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        setTitle("Forest GUI");
+        setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/riverSouth.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/riverSouth.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
@@ -65,7 +67,7 @@ public class RiverSouthGUI extends JFrame {
 
 
         // titleName
-        titleNameLabel = new JLabel("River South");
+        titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         titleNameLabel.setForeground(Color.BLUE);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);

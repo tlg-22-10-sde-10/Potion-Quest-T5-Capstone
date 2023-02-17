@@ -1,4 +1,7 @@
 package com.potionquest.gui;
+import com.potionquest.game.Game;
+import com.potionquest.game.Location;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -54,7 +57,7 @@ public class PotionQuestGUI extends JFrame {
         window.setLayout(null);
 
         //for background pics
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/landing.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/landing.jpg");
         backgroundImage.setBounds(0, 0, this.getWidth(), this.getHeight());
         window.setContentPane(backgroundImage);
         con = window.getContentPane();
@@ -182,6 +185,5 @@ public class PotionQuestGUI extends JFrame {
         langtoftGUI.setVisible(false);
         riverSouthGUI.setVisible(true);
     }
-
 
 }
