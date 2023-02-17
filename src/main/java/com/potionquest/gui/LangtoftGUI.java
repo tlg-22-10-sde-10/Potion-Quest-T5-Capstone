@@ -18,15 +18,16 @@ public class LangtoftGUI extends JFrame {
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public LangtoftGUI() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
         (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        setTitle("Langtoft GUI");
+        setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/langtoft.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/langtoft.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
@@ -65,7 +66,7 @@ public class LangtoftGUI extends JFrame {
 
 
         // titleName
-        titleNameLabel = new JLabel("Langtoft Village");
+        titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         titleNameLabel.setForeground(Color.BLUE);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);

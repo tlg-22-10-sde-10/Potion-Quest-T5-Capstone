@@ -10,7 +10,7 @@
    package name, and should be written entirely in lower case, with the components separated by
    periods, and without enclosing quotes.
   -->
-  <groupId>com.potionquest.client.gameclient</groupId>
+  <groupId>com.potionquest</groupId>
 
   <!--
   DONE: Replace "project" in the <artifactId> element with a spinal-case (lower-case, with dashes

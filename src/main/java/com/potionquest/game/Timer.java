@@ -1,6 +1,4 @@
 package com.potionquest.game;
-
-import com.potionquest.client.*;
 import com.potionquest.client.GameClientUtil;
 
 import java.util.Date;

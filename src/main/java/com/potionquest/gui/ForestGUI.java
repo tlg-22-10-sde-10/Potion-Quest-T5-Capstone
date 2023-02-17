@@ -1,8 +1,6 @@
 package com.potionquest.gui;
-
 import com.potionquest.game.Game;
 import com.potionquest.game.Timer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -16,17 +14,19 @@ public class ForestGUI extends JFrame {
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
     EventHandler eventHandler = new EventHandler();
 
-    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public ForestGUI() throws IOException {
         (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        setTitle("Forest GUI");
+
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
+
+        setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/forest.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/forest.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
@@ -65,7 +65,7 @@ public class ForestGUI extends JFrame {
 
 
         // titleName
-        titleNameLabel = new JLabel("FOREST");
+        titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         titleNameLabel.setForeground(Color.BLUE);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
