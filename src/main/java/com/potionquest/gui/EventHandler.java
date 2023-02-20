@@ -15,46 +15,188 @@ public class EventHandler implements ActionListener {
 
         if(actionPerformedByUser.equalsIgnoreCase("start")) {
 
-            PotionQuestGUI.actionForStartButton();
+            try {
+                PotionQuestGUI.actionForStartButton();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
             // make player's location is changed to forest location
         } else if(actionPerformedByUser.equalsIgnoreCase("north")) {
-            PotionQuestGUI.actionForWhitbyNorthButton();
+            try {
+                PotionQuestGUI.actionForWhitbyNorthButton();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         } else if(actionPerformedByUser.equalsIgnoreCase("south")) {
-            PotionQuestGUI.actionForWhitbySouthButton();
+            try {
+                PotionQuestGUI.actionForWhitbySouthButton();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("forest-south")) {
-            PotionQuestGUI.actionForForestSouth();
+            try {
+                PotionQuestGUI.actionForForestSouth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("forest-east")) {
-            PotionQuestGUI.actionForForestEast();
+            try {
+                PotionQuestGUI.actionForForestEast();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("langtoft-north")) {
-            PotionQuestGUI.actionForLangtoftVillageNorth();
+            try {
+                PotionQuestGUI.actionForLangtoftVillageNorth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("langtoft-south")) {
-            PotionQuestGUI.actionForLangtoftVillageSouth();
+            try {
+                PotionQuestGUI.actionForLangtoftVillageSouth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("mountain-north")) {
-            PotionQuestGUI.actionForMountainPassNorth();
+            try {
+                PotionQuestGUI.actionForMountainPassNorth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("mountain-east")) {
-            PotionQuestGUI.actionForMountainPassEast();
+            try {
+                PotionQuestGUI.actionForMountainPassEast();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("river-south-north")) {
-            PotionQuestGUI.actionForRiverSouthNorth();
+            try {
+                PotionQuestGUI.actionForRiverSouthNorth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("river-south-west")) {
-            PotionQuestGUI.actionForRiverSouthWest();
+            try {
+                PotionQuestGUI.actionForRiverSouthWest();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("river-north-south")) {
-            PotionQuestGUI.actionForRiverNorthSouth();
+            try {
+                PotionQuestGUI.actionForRiverNorthSouth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("river-north-west")) {
-            PotionQuestGUI.actionForRiverNorthWest();
+            try {
+                PotionQuestGUI.actionForRiverNorthWest();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
+        }else if(actionPerformedByUser.equalsIgnoreCase("pick-whitby")) {
+            try {
+                PotionQuestGUI.actionForPickItemWhitby();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("drop-whitby")) {
+            try {
+                PotionQuestGUI.actionForDropItemWhitby();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("pick-item-langtoft")) {
+
+            try {
+                PotionQuestGUI.actionForPickItemLangtoft();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-langtoft")) {
+
+            try {
+                PotionQuestGUI.actionForDropItemLangtoft();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("fight-wolf")) {
+
+            try {
+                PotionQuestGUI.actionForCombatWolf();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-forest")) {
+
+            try {
+                PotionQuestGUI.actionForDropItemForest();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("pick-item-mountain-pass")) {
+
+            try {
+                PotionQuestGUI.actionForPickItemMountainpass();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-mountain-pass")) {
+
+            try {
+                PotionQuestGUI.actionForDropItemMountainpass();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("pick-item-river-north")) {
+
+            try {
+                PotionQuestGUI.actionForPickItemRiverNorth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-river-north")) {
+            try {
+                PotionQuestGUI.actionForDropItemRiverNorth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }else if(actionPerformedByUser.equalsIgnoreCase("pick-item-river-south")) {
+            try {
+                PotionQuestGUI.actionForPickItemRiverSouth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-river-south")) {
+                PotionQuestGUI.actionForDropItemRiverSouth();
         }
+
     }
 
 }
