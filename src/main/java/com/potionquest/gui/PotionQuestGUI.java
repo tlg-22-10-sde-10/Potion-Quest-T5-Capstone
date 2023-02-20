@@ -1,4 +1,5 @@
 package com.potionquest.gui;
+import com.potionquest.client.GameClientUtil;
 import com.potionquest.game.Game;
 import com.potionquest.game.Item;
 import com.potionquest.game.Location;
@@ -6,6 +7,7 @@ import com.potionquest.game.Location;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -121,7 +123,15 @@ public class PotionQuestGUI extends JFrame {
         con.add(titleNamePanel);
         con.add(mainTextPanel);
         con.add(startButtonPanel);
+
+
+
         window.setVisible(true);
+
+        while (Game.getGameInstance().getPlayer().getHealth() > 0) {
+            Game.checkPlayerWinStatus(Game.getGameInstance().getPlayer().getInventory(),
+                    Game.getGameInstance().getPlayer().getCurrentLocation());
+        }
     }
 
     public static void actionForStartButton() throws IOException {
@@ -358,6 +368,16 @@ public class PotionQuestGUI extends JFrame {
         }
     }
 
-    public static void actionForDropItemRiverSouth() {
+    public static void actionForDropItemRiverSouth() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            riverSouthGUI.setVisible(false);
+            riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setVisible(true);
+        }
     }
+
 }

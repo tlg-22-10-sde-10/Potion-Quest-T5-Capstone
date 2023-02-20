@@ -194,7 +194,11 @@ public class EventHandler implements ActionListener {
             }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-river-south")) {
+            try {
                 PotionQuestGUI.actionForDropItemRiverSouth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
 
     }
