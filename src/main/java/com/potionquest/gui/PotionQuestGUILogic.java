@@ -25,7 +25,7 @@ public class PotionQuestGUILogic {
 
     public void initGui() {
     }
-
+//
     //create a window saying winner
     private static void createWindow() {
         JFrame frame = new JFrame("WINNER!");
