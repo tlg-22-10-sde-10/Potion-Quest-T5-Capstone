@@ -52,6 +52,8 @@ public class ForestGUI extends JFrame {
 
         // labels for display panel
         //timeLabel = new JLabel("TIME: "+ Timer.getTimeRemainingMin()); //text label
+        //GuiTimer guiTimer=new GuiTimer();
+        //timeLabel=guiTimer.getTimeLabel();
         timeLabel= Game.getGuiTimer().getTimeLabel();
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));

@@ -58,8 +58,8 @@ public class WhitbyVillageGUI extends JFrame {
 
         // labels for display panel
         //timeLabel = new JLabel("TIME: "+Timer.getTimeRemainingMin()); //text label
-//        GuiTimer guiTimer=new GuiTimer();
-//        timeLabel=guiTimer.getTimeLabel();
+        //GuiTimer guiTimer=new GuiTimer();
+        //timeLabel=guiTimer.getTimeLabel();
 
         timeLabel= Game.getGuiTimer().getTimeLabel();
         //timeLabel.setVisible(true);
