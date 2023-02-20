@@ -61,7 +61,7 @@ public class WhitbyVillageGUI extends JFrame {
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
-        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory()); //text label
+        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
         inventoryLabel.setForeground(Color.BLACK);// text color
         inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -119,12 +119,15 @@ public class WhitbyVillageGUI extends JFrame {
         pickButton = new JButton("PICK ITEM");
         pickButton.setBackground(Color.GREEN);
         pickButton.setForeground(Color.GREEN);
-        pickButton.setActionCommand("west");
+        pickButton.setActionCommand("pick-whitby");
+        pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
-        dropButton.setActionCommand("north");
+        dropButton.setActionCommand("drop-whitby");
         dropButton.setBackground(Color.GREEN);
+        // add action listener
+        dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);

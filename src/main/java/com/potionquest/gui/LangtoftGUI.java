@@ -16,7 +16,6 @@ public class LangtoftGUI extends JFrame {
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
     EventHandler eventHandler = new EventHandler();
 
-    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public LangtoftGUI() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
         (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
@@ -56,7 +55,7 @@ public class LangtoftGUI extends JFrame {
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
-        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory()); //text label
+        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
         inventoryLabel.setForeground(Color.BLACK);// text color
         inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -114,12 +113,14 @@ public class LangtoftGUI extends JFrame {
         pickButton = new JButton("PICK ITEM");
         pickButton.setBackground(Color.GREEN);
         pickButton.setForeground(Color.GREEN);
-        pickButton.setActionCommand("west");
+        pickButton.setActionCommand("pick-item-langtoft");
+        pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
-        dropButton.setActionCommand("north");
+        dropButton.setActionCommand("drop-item-langtoft");
         dropButton.setBackground(Color.GREEN);
+        dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
