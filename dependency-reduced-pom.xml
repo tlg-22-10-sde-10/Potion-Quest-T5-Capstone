@@ -94,6 +94,8 @@
         </exclusion>
       </exclusions>
     </dependency>
+<<<<<<< HEAD
+=======
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
@@ -112,6 +114,7 @@
       <version>3.12.0</version>
       <scope>compile</scope>
     </dependency>
+>>>>>>> 89dd176269a622c3994df6039706b6f866c95666
   </dependencies>
   <reporting>
     <plugins>

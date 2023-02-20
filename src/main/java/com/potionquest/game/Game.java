@@ -2,7 +2,9 @@ package com.potionquest.game;
 
 import com.potionquest.client.GameClient;
 import com.potionquest.client.GameClientUtil;
+import com.potionquest.gui.GuiTimer;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.*;
 
@@ -13,6 +15,7 @@ public class Game {
     private static Map<String, Location> locations;
     private Map<String, Monster> monsters;
     private Map<String, Characters> characters;
+    private static GuiTimer guiTimer;
 
     private Sound sound;
 
@@ -115,6 +118,8 @@ public class Game {
 
             Sound sound = new Sound();
             gameInstance = new Game(cindy, mapOfAllMonsters, mapOfAllItems, mapOfAllLocations, mapOfAllCharacters, sound);
+            guiTimer=new GuiTimer();
+
         }
         return gameInstance;
     }
@@ -188,5 +193,9 @@ public class Game {
 
     public void setSound(Sound sound) {
         this.sound = sound;
+    }
+
+    public static GuiTimer getGuiTimer() {
+        return guiTimer;
     }
 }

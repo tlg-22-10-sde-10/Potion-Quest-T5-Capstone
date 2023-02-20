@@ -5,6 +5,8 @@ import com.potionquest.game.Location;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
@@ -62,6 +64,7 @@ public class PotionQuestGUI extends JFrame {
         PotionQuestImage backgroundImage = new PotionQuestImage("images/landing.jpg");
         backgroundImage.setBounds(0, 0, this.getWidth(), this.getHeight());
         window.setContentPane(backgroundImage);
+
         con = window.getContentPane();
 
         //creates title to go in container(PANEL)
@@ -121,7 +124,11 @@ public class PotionQuestGUI extends JFrame {
         con.add(titleNamePanel);
         con.add(mainTextPanel);
         con.add(startButtonPanel);
+
+        //con.add(new Timer());
+
         window.setVisible(true);
+
     }
 
     public static void actionForStartButton() throws IOException {
