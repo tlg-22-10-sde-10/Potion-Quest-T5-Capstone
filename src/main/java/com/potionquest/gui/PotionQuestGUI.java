@@ -1,5 +1,6 @@
 package com.potionquest.gui;
 import com.potionquest.game.Game;
+import com.potionquest.game.Item;
 import com.potionquest.game.Location;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 
 public class PotionQuestGUI extends JFrame {
@@ -129,68 +131,240 @@ public class PotionQuestGUI extends JFrame {
 
     }
 
-    public static void actionForStartButton() {
+    public static void actionForStartButton() throws IOException {
         window.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+        whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
     }
 
-    public static void actionForWhitbyNorthButton() {
+    public static void actionForWhitbyNorthButton() throws IOException {
         whitByFrame.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
+        forestGUI = new ForestGUI();
         forestGUI.setVisible(true);
     }
-    public static void actionForWhitbySouthButton() {
+    public static void actionForWhitbySouthButton() throws IOException {
         whitByFrame.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Mountain Pass"));
+        mountainPassGUI = new MountainPassGUI();
         mountainPassGUI.setVisible(true);
     }
 
-    public static void actionForForestEast() {
+    public static void actionForForestEast() throws IOException {
         forestGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
+        riverNorthGUI = new RiverNorthGUI();
         riverNorthGUI.setVisible(true);
     }
 
-    public static void actionForForestSouth() {
+    public static void actionForForestSouth() throws IOException {
         forestGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+
+        whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
 
     }
 
-    public static void actionForMountainPassNorth() {
+    public static void actionForMountainPassNorth() throws IOException {
         mountainPassGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+        whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
 
     }
-    public static void actionForMountainPassEast() {
+    public static void actionForMountainPassEast() throws IOException {
         mountainPassGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+        riverSouthGUI = new RiverSouthGUI();
         riverSouthGUI.setVisible(true);
     }
 
-    public static void actionForRiverSouthNorth() {
+    public static void actionForRiverSouthNorth() throws IOException {
         riverSouthGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
+
+        langtoftGUI = new LangtoftGUI();
         langtoftGUI.setVisible(true);
 
     }
-    public static void actionForRiverSouthWest() {
+    public static void actionForRiverSouthWest() throws IOException {
         riverSouthGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Mountain Pass"));
+        mountainPassGUI = new MountainPassGUI();
         mountainPassGUI.setVisible(true);
     }
 
     // River North
-    public static void actionForRiverNorthWest() {
+    public static void actionForRiverNorthWest() throws IOException {
         riverNorthGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
+        forestGUI = new ForestGUI();
         forestGUI.setVisible(true);
     }
-    public static void actionForRiverNorthSouth() {
+    public static void actionForRiverNorthSouth() throws IOException {
         riverNorthGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
+        langtoftGUI = new LangtoftGUI();
         langtoftGUI.setVisible(true);
     }
     // langtoft village
-    public static void actionForLangtoftVillageNorth() {
+    public static void actionForLangtoftVillageNorth() throws IOException {
         langtoftGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
+        riverNorthGUI = new RiverNorthGUI();
         riverNorthGUI.setVisible(true);
+
     }
-    public static void actionForLangtoftVillageSouth() {
+    public static void actionForLangtoftVillageSouth() throws IOException {
         langtoftGUI.setVisible(false);
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+        riverSouthGUI = new RiverSouthGUI();
         riverSouthGUI.setVisible(true);
     }
 
+    public static void actionForPickItemWhitby() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
+            Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
+            Game.getGameInstance().getPlayer().getInventory().add(item);
+            whitByFrame.setVisible(false);
+            whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setVisible(true);
+        }
+    }
+
+    public static void actionForDropItemWhitby() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            whitByFrame.setVisible(false);
+            whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setVisible(true);
+        }
+
+    }
+
+    public static void actionForCombatWolf() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
+
+        // TO-DO
+        // action for fighting wolf
+    }
+
+    public static void actionForDropItemForest() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            forestGUI.setVisible(false);
+            forestGUI = new ForestGUI();
+            forestGUI.setVisible(true);
+        }
+    }
+
+    public static void actionForPickItemMountainpass() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Mountain Pass"));
+
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
+            Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
+            Game.getGameInstance().getPlayer().getInventory().add(item);
+
+            mountainPassGUI.setVisible(false);
+            mountainPassGUI = new MountainPassGUI();
+            mountainPassGUI.setVisible(true);
+        }
+    }
+
+    public static void actionForDropItemMountainpass() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Mountain Pass"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            mountainPassGUI.setVisible(false);
+            mountainPassGUI = new MountainPassGUI();
+            mountainPassGUI.setVisible(true);
+        }
+    }
+
+    public static void actionForPickItemLangtoft() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
+
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
+            Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
+            Game.getGameInstance().getPlayer().getInventory().add(item);
+
+            langtoftGUI.setVisible(false);
+            langtoftGUI = new LangtoftGUI();
+            langtoftGUI.setVisible(true);
+        }
+
+    }
+
+    public static void actionForDropItemLangtoft() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            langtoftGUI.setVisible(false);
+            langtoftGUI = new LangtoftGUI();
+            langtoftGUI.setVisible(true);
+        }
+
+    }
+
+    public static void actionForPickItemRiverNorth() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
+
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
+            Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
+            Game.getGameInstance().getPlayer().getInventory().add(item);
+
+            riverNorthGUI.setVisible(false);
+            riverNorthGUI = new RiverNorthGUI();
+            riverNorthGUI.setVisible(true);
+        }
+
+    }
+
+    public static void actionForDropItemRiverNorth() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            riverNorthGUI.setVisible(false);
+            riverNorthGUI = new RiverNorthGUI();
+            riverNorthGUI.setVisible(true);
+        }
+
+    }
+
+    public static void actionForPickItemRiverSouth() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
+            Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
+            Game.getGameInstance().getPlayer().getInventory().add(item);
+
+            riverSouthGUI.setVisible(false);
+            riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setVisible(true);
+        }
+    }
+
+    public static void actionForDropItemRiverSouth() {
+    }
 }

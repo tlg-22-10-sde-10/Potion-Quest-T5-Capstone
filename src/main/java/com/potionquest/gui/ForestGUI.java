@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class ForestGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel,combatAndDrop;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton northButton,eastButton,westButton,southButton,pickButton,dropButton;
+    JButton eastButton,southButton,combatButton,dropButton;
     JTextArea description;
     Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
     EventHandler eventHandler = new EventHandler();
@@ -51,14 +51,17 @@ public class ForestGUI extends JFrame {
 
 
         // labels for display panel
+
         //timeLabel = new JLabel("TIME: "+ Timer.getTimeRemainingMin()); //text label
         //GuiTimer guiTimer=new GuiTimer();
         //timeLabel=guiTimer.getTimeLabel();
         timeLabel= Game.getGuiTimer().getTimeLabel();
+
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
-        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory()); //text label
+        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
+        //text label
         inventoryLabel.setForeground(Color.BLACK);// text color
         inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -108,23 +111,25 @@ public class ForestGUI extends JFrame {
         movementPanel.setBackground(Color.BLACK);
         movementPanel.setLayout(new GridLayout(2, 1));
 
-        pickAndDropPanel=new JPanel();
-        pickAndDropPanel.setBounds(500, 600, 220, 40);
-        pickAndDropPanel.setBackground(Color.BLACK);
-        pickAndDropPanel.setLayout(new GridLayout(1, 2));
+        combatAndDrop=new JPanel();
+        combatAndDrop.setBounds(500, 600, 220, 40);
+        combatAndDrop.setBackground(Color.BLACK);
+        combatAndDrop.setLayout(new GridLayout(1, 2));
 
-        pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
-        pickButton.setActionCommand("west");
+        combatButton = new JButton("FIGHT WOLF");
+        combatButton.setBackground(Color.GREEN);
+        combatButton.setForeground(Color.GREEN);
+        combatButton.setActionCommand("fight-wolf");
+        combatButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
-        dropButton.setActionCommand("north");
+        dropButton.setActionCommand("drop-item-forest");
         dropButton.setBackground(Color.GREEN);
+        dropButton.addActionListener(eventHandler);
 
-        pickAndDropPanel.add(pickButton);
-        pickAndDropPanel.add(dropButton);
+        combatAndDrop.add(combatButton);
+        combatAndDrop.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
         southButton.setForeground(Color.ORANGE);
@@ -149,7 +154,7 @@ public class ForestGUI extends JFrame {
         add(titleNamePanel);
         add(footer);
         add(movementPanel);
-        add(pickAndDropPanel);
+        add(combatAndDrop);
 
         setVisible(false);
     }
