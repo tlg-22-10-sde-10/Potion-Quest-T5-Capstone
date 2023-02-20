@@ -36,6 +36,7 @@ public class PotionQuestGUI extends JFrame {
     private static RiverNorthGUI riverNorthGUI;
     private static RiverSouthGUI riverSouthGUI;
     private static LangtoftGUI langtoftGUI;
+    private static WinnerGUI winnerGUI;
     static {
         try {
             whitByFrame = new WhitbyVillageGUI();
@@ -44,6 +45,7 @@ public class PotionQuestGUI extends JFrame {
             riverNorthGUI = new RiverNorthGUI();
             riverSouthGUI = new RiverSouthGUI();
             langtoftGUI = new LangtoftGUI();
+            winnerGUI = new WinnerGUI();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -136,6 +138,8 @@ public class PotionQuestGUI extends JFrame {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
         whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
+//        winnerGUI.setVisible(true);
+        //winnergui is the winner page
     }
 
     public static void actionForWhitbyNorthButton() throws IOException {
