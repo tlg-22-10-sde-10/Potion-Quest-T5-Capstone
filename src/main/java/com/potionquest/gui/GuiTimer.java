@@ -6,26 +6,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimerTask;
 
-public class Timer extends JFrame{
+public class GuiTimer extends JFrame{
 
-    private JLabel timeLabel;
+    private   JLabel timeLabel;
 
-    public Timer() {
+
+
+    public GuiTimer() {
         super("Countdown Timer");
 
         timeLabel = new JLabel();
-        timeLabel.setFont(new Font("Arial", Font.BOLD, 32));
-        timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
+        timeLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
         add(timeLabel, BorderLayout.CENTER);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 100);
-        setVisible(true);
+        setVisible(false);
 
         // Start the timer thread
         java.util.Timer timer=new java.util.Timer();
         timer.scheduleAtFixedRate(new Task(),0,1000);
+
+
     }
 
 
@@ -41,9 +45,13 @@ public class Timer extends JFrame{
             int minutes = seconds / 60;
             seconds = seconds % 60;
             String timeString = String.format("%d:%02d", minutes, seconds);
-            SwingUtilities.invokeLater(() -> timeLabel.setText(timeString));
+            SwingUtilities.invokeLater(() -> timeLabel.setText("Time Left: "+timeString));
 
 
         }
     }
+    public JLabel getTimeLabel() {
+        return timeLabel;
+    }
+
 }

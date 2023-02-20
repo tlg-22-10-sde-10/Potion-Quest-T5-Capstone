@@ -123,7 +123,7 @@ public class PotionQuestGUI extends JFrame {
         con.add(mainTextPanel);
         con.add(startButtonPanel);
 
-        con.add(new Timer());
+        //con.add(new Timer());
 
         window.setVisible(true);
 
