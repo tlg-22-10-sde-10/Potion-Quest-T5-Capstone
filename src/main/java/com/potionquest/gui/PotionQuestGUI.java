@@ -1,14 +1,11 @@
 package com.potionquest.gui;
+
 import com.potionquest.game.Game;
 import com.potionquest.game.Item;
-import com.potionquest.game.Location;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.stream.Collectors;
+
 
 
 public class PotionQuestGUI extends JFrame {
@@ -37,6 +34,7 @@ public class PotionQuestGUI extends JFrame {
     private static RiverSouthGUI riverSouthGUI;
     private static LangtoftGUI langtoftGUI;
     private static WinnerGUI winnerGUI;
+
     static {
         try {
             whitByFrame = new WhitbyVillageGUI();
@@ -61,12 +59,12 @@ public class PotionQuestGUI extends JFrame {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
+        window.setLocationRelativeTo(null);
 
         //for background pics
         PotionQuestImage backgroundImage = new PotionQuestImage("images/landing.jpg");
         backgroundImage.setBounds(0, 0, this.getWidth(), this.getHeight());
         window.setContentPane(backgroundImage);
-
         con = window.getContentPane();
 
         //creates title to go in container(PANEL)
@@ -126,20 +124,16 @@ public class PotionQuestGUI extends JFrame {
         con.add(titleNamePanel);
         con.add(mainTextPanel);
         con.add(startButtonPanel);
-
-        //con.add(new Timer());
-
         window.setVisible(true);
 
     }
+
 
     public static void actionForStartButton() throws IOException {
         window.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
         whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
-//        winnerGUI.setVisible(true);
-        //winnergui is the winner page
     }
 
     public static void actionForWhitbyNorthButton() throws IOException {
@@ -166,18 +160,33 @@ public class PotionQuestGUI extends JFrame {
         forestGUI.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
 
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
+
+        if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
+            if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
+                winnerGUI.setVisible(true);
+            }
+        } else {
+            whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setVisible(true);
+        }
 
     }
 
     public static void actionForMountainPassNorth() throws IOException {
         mountainPassGUI.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
 
+
+        if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
+            if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
+                winnerGUI.setVisible(true);
+            }
+        } else {
+            whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setVisible(true);
+        }
     }
+
     public static void actionForMountainPassEast() throws IOException {
         mountainPassGUI.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
@@ -369,6 +378,32 @@ public class PotionQuestGUI extends JFrame {
         }
     }
 
-    public static void actionForDropItemRiverSouth() {
+    public static void actionForDropItemRiverSouth() throws IOException {
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+        if(Game.getGameInstance().getPlayer().getInventory().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getInventory().get(0);
+            Game.getGameInstance().getPlayer().getInventory().remove(item);
+
+            riverSouthGUI.setVisible(false);
+            riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setVisible(true);
+        }
+    }
+
+    public static void actionForPlayAgain() throws IOException {
+        Game.destroyGameInstance();
+        winnerGUI.setVisible(false);
+        Game.destroyGameInstance();
+        Game.createGameInstance();
+        whitByFrame = new WhitbyVillageGUI();
+        whitByFrame.setVisible(true);
+
+    }
+
+    public static void actionForEXitGame() throws IOException {
+        Game.destroyGameInstance();
+        winnerGUI.setVisible(false);
+        System.exit(0);
+
     }
 }

@@ -154,7 +154,7 @@ public class Location {
     public String monsterDescription() throws NullPointerException, IndexOutOfBoundsException {
         String str = "";
         try {
-            str = "There is a " + ANSI_RED + getMonsters().get(0).getName() + ANSI_RESET + " here.";
+            str = "There is a " +getMonsters().get(0).getName() +" here.";
         } catch (Exception e) {
             System.out.println("");
         }

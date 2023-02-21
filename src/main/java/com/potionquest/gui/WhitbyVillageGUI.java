@@ -2,7 +2,6 @@ package com.potionquest.gui;
 
 import com.potionquest.game.Game;
 import com.potionquest.game.Timer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -13,7 +12,7 @@ public class WhitbyVillageGUI extends JFrame {
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
     JButton northButton,southButton,pickButton,dropButton;
     JTextArea description;
-    Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
+
     EventHandler eventHandler = new EventHandler();
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();

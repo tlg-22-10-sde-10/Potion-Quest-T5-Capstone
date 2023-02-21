@@ -21,7 +21,6 @@ public class EventHandler implements ActionListener {
                 ioException.printStackTrace();
             }
 
-            // make player's location is changed to forest location
         } else if(actionPerformedByUser.equalsIgnoreCase("north")) {
             try {
                 PotionQuestGUI.actionForWhitbyNorthButton();
@@ -194,7 +193,27 @@ public class EventHandler implements ActionListener {
             }
 
         }else if(actionPerformedByUser.equalsIgnoreCase("drop-item-river-south")) {
+            try {
                 PotionQuestGUI.actionForDropItemRiverSouth();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }else if(actionPerformedByUser.equalsIgnoreCase("play")) {
+
+            try {
+                PotionQuestGUI.actionForPlayAgain();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("exit")) {
+
+            try {
+                PotionQuestGUI.actionForEXitGame();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
         }
 
     }
