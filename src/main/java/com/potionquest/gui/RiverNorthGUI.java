@@ -102,41 +102,35 @@ public class RiverNorthGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         pickAndDropPanel=new JPanel();
         pickAndDropPanel.setBounds(500, 600, 220, 40);
-        pickAndDropPanel.setBackground(Color.BLACK);
+        pickAndDropPanel.setOpaque(false);
         pickAndDropPanel.setLayout(new GridLayout(1, 2));
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-river-north");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-river-north");
-        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
-        southButton.setForeground(Color.ORANGE);
+        southButton.setForeground(Color.RED);
         southButton.setActionCommand("river-north-south");
-        southButton.setBackground(Color.GREEN);
-
         southButton.addActionListener(eventHandler);
 
         westButton = new JButton("GO WEST");
-        westButton.setForeground(Color.ORANGE);
+        westButton.setForeground(Color.RED);
         westButton.setActionCommand("river-north-west");
-        westButton.setBackground(Color.GREEN);
-
         westButton.addActionListener(eventHandler);
 
         movementPanel.add(westButton);

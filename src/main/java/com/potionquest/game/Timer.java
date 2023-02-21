@@ -40,7 +40,7 @@ public class Timer implements Runnable {
                 e.printStackTrace();
             }
 
-//            GameClientUtil.endGameSequence();
+            GameClientUtil.endGameSequence();
         }
     }
 

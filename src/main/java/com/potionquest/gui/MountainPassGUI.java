@@ -43,7 +43,7 @@ public class MountainPassGUI extends JFrame {
                 +Game.getGameInstance().getPlayer().getCurrentLocation().getItems().stream().map(p -> p.getName())
                 .collect(Collectors.toList()));
         //text label
-        itemsLabel.setForeground(Color.BLACK);// text color
+        itemsLabel.setForeground(Color.BLACK);
         itemsLabel.setBackground(Color.ORANGE);
         itemsLabel.setOpaque(true);
         itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,18));
@@ -51,9 +51,8 @@ public class MountainPassGUI extends JFrame {
 
 
         // labels for display panel
-//        timeLabel = new JLabel("TIME: "+ Timer.getTimeRemainingMin()); //text label
         timeLabel= Game.getGuiTimer().getTimeLabel();
-        timeLabel.setForeground(Color.BLACK);// text color
+        timeLabel.setForeground(Color.BLACK);
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
         inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
@@ -76,7 +75,6 @@ public class MountainPassGUI extends JFrame {
         titleNamePanel.add(titleNameLabel);
 
         // status labels
-
         description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
@@ -104,41 +102,35 @@ public class MountainPassGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         pickAndDropPanel=new JPanel();
         pickAndDropPanel.setBounds(500, 600, 220, 40);
-        pickAndDropPanel.setBackground(Color.BLACK);
+        pickAndDropPanel.setOpaque(false);
         pickAndDropPanel.setLayout(new GridLayout(1, 2));
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-mountain-pass");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-mountain-pass");
-        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
         northButton = new JButton("GO NORTH");
-        northButton.setForeground(Color.ORANGE);
+        northButton.setForeground(Color.RED);
         northButton.setActionCommand("mountain-north");
-        northButton.setBackground(Color.GREEN);
-
         northButton.addActionListener(eventHandler);
 
         eastButton = new JButton("GO EAST");
-        eastButton.setForeground(Color.ORANGE);
+        eastButton.setForeground(Color.RED);
         eastButton.setActionCommand("mountain-east");
-        eastButton.setBackground(Color.GREEN);
-
         eastButton.addActionListener(eventHandler);
 
         movementPanel.add(northButton);
