@@ -2,6 +2,7 @@ package com.potionquest.game;
 
 import com.potionquest.client.GameClient;
 import com.potionquest.client.GameClientUtil;
+import com.potionquest.gui.GuiTimer;
 
 import java.io.IOException;
 import java.util.*;
@@ -13,7 +14,7 @@ public class Game {
     private static Map<String, Location> locations;
     private Map<String, Monster> monsters;
     private Map<String, Characters> characters;
-
+    private static GuiTimer guiTimer;
     private Sound sound;
 
     private Game(){};
@@ -113,18 +114,18 @@ public class Game {
             village2.addAdjacentLocation("NORTH", riverNorth);
             village2.addAdjacentLocation("SOUTH", riverSouth);
 
+
             Sound sound = new Sound();
             gameInstance = new Game(cindy, mapOfAllMonsters, mapOfAllItems, mapOfAllLocations, mapOfAllCharacters, sound);
+            guiTimer = new GuiTimer();
         }
         return gameInstance;
     }
 
     public static void checkWin(List<Item> inventory, Location location, GameClient gameClient) throws IOException {
-        Map<String, Item> mapOfAllItems = Item.itemJsonParser();
         if (inventory.contains(Game.gameInstance.getItems().get("Potion"))) {
             if (location.getName().equalsIgnoreCase("Whitby Village")) {
-                //TODO: Add win confirmation statement
-//                gameClient.setQuitGame(true);
+
                 System.out.println("You were able to save your sister in the nick of time!" +
                         "\nThough she will take days to fully recover, her life is no longer in jeopardy!" +
                         "\nYou go back to your regular life, content with what it brings.");
@@ -138,8 +139,6 @@ public class Game {
         Map<String, Item> mapOfAllItems = Item.itemJsonParser();
         if (inventory.contains(Game.gameInstance.getItems().get("Potion"))) {
             if (location.getName().equalsIgnoreCase("Whitby Village")) {
-                //TODO: Add win confirmation statement
-//                gameClient.setQuitGame(true);
                 System.out.println("You were able to save your sister in the nick of time!" +
                         "\nThough she will take days to fully recover, her life is no longer in jeopardy!" +
                         "\nYou go back to your regular life, content with what it brings.");
@@ -204,4 +203,9 @@ public class Game {
     public void setSound(Sound sound) {
         this.sound = sound;
     }
+
+    public static GuiTimer getGuiTimer() {
+        return guiTimer;
+    }
+
 }

@@ -7,11 +7,10 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class ForestGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel,combatAndDrop;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatAndDrop;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
     JButton eastButton,southButton,combatButton,dropButton;
     JTextArea description;
-    Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
     EventHandler eventHandler = new EventHandler();
 
     public ForestGUI() throws IOException {
@@ -51,7 +50,7 @@ public class ForestGUI extends JFrame {
 
 
         // labels for display panel
-        timeLabel = new JLabel("TIME: "+ Timer.getTimeRemainingMin()+"minutes left"); //text label
+        timeLabel= Game.getGuiTimer().getTimeLabel();
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -75,13 +74,11 @@ public class ForestGUI extends JFrame {
         titleNamePanel.add(titleNameLabel);
 
         // status labels
-
         description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
         description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-//        description.setOpaque(false);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 

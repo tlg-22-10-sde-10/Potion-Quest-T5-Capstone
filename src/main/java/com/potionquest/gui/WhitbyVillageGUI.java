@@ -1,10 +1,7 @@
 package com.potionquest.gui;
 
 import com.potionquest.game.Game;
-import com.potionquest.game.Location;
-import com.potionquest.game.Player;
 import com.potionquest.game.Timer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -13,9 +10,9 @@ import java.util.stream.Collectors;
 public class WhitbyVillageGUI extends JFrame {
     JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton northButton,eastButton,westButton,southButton,pickButton,dropButton;
+    JButton northButton,southButton,pickButton,dropButton;
     JTextArea description;
-    Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
+
     EventHandler eventHandler = new EventHandler();
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
@@ -57,7 +54,7 @@ public class WhitbyVillageGUI extends JFrame {
 
 
         // labels for display panel
-        timeLabel = new JLabel("TIME: "+Timer.getTimeRemainingMin()); //text label
+        timeLabel= Game.getGuiTimer().getTimeLabel();
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 

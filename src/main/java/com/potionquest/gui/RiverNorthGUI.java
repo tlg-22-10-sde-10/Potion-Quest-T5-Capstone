@@ -1,7 +1,7 @@
 package com.potionquest.gui;
 
 import com.potionquest.game.Game;
-import com.potionquest.game.Timer;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,12 +11,10 @@ import java.util.stream.Collectors;
 public class RiverNorthGUI extends JFrame {
     JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton northButton,eastButton,westButton,southButton,pickButton,dropButton;
+    JButton westButton,southButton,pickButton,dropButton;
     JTextArea description;
-    Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
     EventHandler eventHandler = new EventHandler();
 
-    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public RiverNorthGUI() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
 
@@ -53,7 +51,7 @@ public class RiverNorthGUI extends JFrame {
 
 
         // labels for display panel
-        timeLabel = new JLabel("TIME: "+ Timer.getTimeRemainingMin()); //text label
+        timeLabel= Game.getGuiTimer().getTimeLabel();
         timeLabel.setForeground(Color.BLACK);// text color
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -83,7 +81,6 @@ public class RiverNorthGUI extends JFrame {
         description.setBackground(Color.ORANGE);
         description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-//        description.setOpaque(false);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
