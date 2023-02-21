@@ -1,62 +1,73 @@
 package com.potionquest.gui;
 
+import com.potionquest.game.Game;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class RiverSouthGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton northButton,eastButton,westButton,southButton;
+    JButton northButton,eastButton,westButton,southButton,pickButton,dropButton;
     JTextArea description;
-    Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
+    EventHandler eventHandler = new EventHandler();
 
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-    public RiverSouthGUI() {
-        setTitle("River South");
+    public RiverSouthGUI() throws IOException {
+//        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
+
+        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+        setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/potionStarting.png");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/riverSouth.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
         // player info panel
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(0,0,800,100);
-        titleNamePanel.setOpaque(true);
-//        titleNamePanel.setBackground(Color.BLUE);
+        titleNamePanel.setOpaque(false);
 
         itemsAvailablePanel = new JPanel();
-        itemsAvailablePanel.setBounds(0,50,800,40);
-        itemsAvailablePanel.setBackground(Color.BLACK);
+        itemsAvailablePanel.setBounds(0,65,800,60);
+        itemsAvailablePanel.setOpaque(false);
 
-        itemsLabel = new JLabel("ITEMS AVAILABLE: "+"{Sword, Trinket, Bread, Rope, Potion}"); //text label
-        itemsLabel.setForeground(Color.GREEN);// text color
-        itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        itemsLabel = new JLabel("ITEMS AVAILABLE: "
+                +Game.getGameInstance().getPlayer().getCurrentLocation().getItems().stream().map(p -> p.getName())
+                .collect(Collectors.toList()));
+        //text label
+        itemsLabel.setForeground(Color.BLACK);// text color
+        itemsLabel.setBackground(Color.ORANGE);
+        itemsLabel.setOpaque(true);
+        itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,18));
         itemsAvailablePanel.add(itemsLabel);
 
 
         // labels for display panel
-        timeLabel = new JLabel("TIME: "+"07:00:00"); //text label
-        timeLabel.setForeground(Color.RED);// text color
-        timeLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        timeLabel= Game.getGuiTimer().getTimeLabel();
+        timeLabel.setForeground(Color.BLACK);// text color
+        timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
-        inventoryLabel = new JLabel("INVENTORY: "+"{rope}"); //text label
-        inventoryLabel.setForeground(Color.RED);// text color
-        inventoryLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
 
-        healthLabel = new JLabel("HEALTH: "+"100/100"); //text label
-        healthLabel.setForeground(Color.RED);// text color
-        healthLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        inventoryLabel.setForeground(Color.BLACK);// text color
+        inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
+        healthLabel = new JLabel("HEALTH: "+Game.getGameInstance().getPlayer().getHealth()); //text label
+        healthLabel.setForeground(Color.BLACK);// text color
+        healthLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
 
         // titleName
-        titleNameLabel = new JLabel("RIVER SOUTH");
-        titleNameLabel.setForeground(Color.ORANGE);
+        titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
+        titleNameLabel.setForeground(Color.BLUE);
+        titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
         titleNameLabel.setFont(new Font("Arial",Font.BOLD,40));
         titleNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -64,26 +75,25 @@ public class RiverSouthGUI extends JFrame {
 
         // status labels
 
-        // textArea for text
-        description = new JTextArea("More to come");
+        description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
-        description.setBounds(120,10,600,60);
+        description.setBackground(Color.ORANGE);
+        description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-        description.setOpaque(false);
-//        description.setBackground(Color.CYAN);
+//        description.setOpaque(false);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
         // creates panel for text area
         descriptionPanel = new JPanel();
-        descriptionPanel.setBounds(0,100,800,90);
-//        descriptionPanel.setBackground(Color.GREEN);
+        descriptionPanel.setBounds(10,100,800,150);
+        descriptionPanel.setOpaque(false);
         descriptionPanel.add(description);
 
         // footer for health and inventory
         footer = new JPanel();
         footer.setBounds(0,700,800,40);
-        footer.setBackground(Color.BLUE);
+        footer.setBackground(Color.ORANGE);
         footer.setLayout(new GridLayout(1, 3));
         footer.add(timeLabel);
         footer.add(inventoryLabel);
@@ -91,24 +101,48 @@ public class RiverSouthGUI extends JFrame {
 
         // movements
         movementPanel = new JPanel();
-        movementPanel.setBounds(10, 500, 200, 180);
+        movementPanel.setBounds(10, 500, 120, 80);
         movementPanel.setBackground(Color.BLACK);
         movementPanel.setLayout(new GridLayout(2, 1));
 
-        westButton = new JButton("GO WEST");
-        westButton.setBackground(Color.GREEN);
-        westButton.setForeground(Color.ORANGE);
-        westButton.setActionCommand("west");
+        pickAndDropPanel=new JPanel();
+        pickAndDropPanel.setBounds(500, 600, 220, 40);
+        pickAndDropPanel.setBackground(Color.BLACK);
+        pickAndDropPanel.setLayout(new GridLayout(1, 2));
+
+        pickButton = new JButton("PICK ITEM");
+        pickButton.setBackground(Color.GREEN);
+        pickButton.setForeground(Color.GREEN);
+        pickButton.setActionCommand("pick-item-river-south");
+        pickButton.addActionListener(eventHandler);
+
+
+        dropButton = new JButton("DROP ITEM");
+        dropButton.setForeground(Color.RED);
+        dropButton.setActionCommand("drop-item-river-south");
+        dropButton.setBackground(Color.GREEN);
+        dropButton.addActionListener(eventHandler);
+
+
+        pickAndDropPanel.add(pickButton);
+        pickAndDropPanel.add(dropButton);
 
         northButton = new JButton("GO NORTH");
         northButton.setForeground(Color.ORANGE);
-        northButton.setActionCommand("north");
+        northButton.setActionCommand("river-south-north");
         northButton.setBackground(Color.GREEN);
 
-        //Move to location buttons
+        northButton.addActionListener(eventHandler);
+
+        westButton = new JButton("GO WEST");
+        westButton.setForeground(Color.ORANGE);
+        westButton.setActionCommand("river-south-west");
+        westButton.setBackground(Color.GREEN);
+
+        westButton.addActionListener(eventHandler);
+
         movementPanel.add(northButton);
         movementPanel.add(westButton);
-
 
         // adds panel to the frame
         add(itemsAvailablePanel);
@@ -116,6 +150,8 @@ public class RiverSouthGUI extends JFrame {
         add(titleNamePanel);
         add(footer);
         add(movementPanel);
+        add(pickAndDropPanel);
+
         setVisible(false);
     }
 }

@@ -15,12 +15,8 @@ public class PotionQuestGUILogic {
         }
     }
 
-    public PotionQuestGUILogic() {
-        initGui();
+    public PotionQuestGUILogic() throws IOException {
         frame.setVisible(true);
     }
 
-    public void initGui(){
-
-    }
 }

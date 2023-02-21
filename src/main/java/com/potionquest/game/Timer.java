@@ -1,8 +1,8 @@
 package com.potionquest.game;
-
-import com.potionquest.client.*;
 import com.potionquest.client.GameClientUtil;
+import com.potionquest.gui.WhitbyVillageGUI;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class Timer implements Runnable {
@@ -32,7 +32,15 @@ public class Timer implements Runnable {
             System.out.println("You ran out of time...com.postionquest.game.Game Over");
             System.out.println("==================================");
             System.out.println();
-            GameClientUtil.endGameSequence();
+
+            try {
+                WhitbyVillageGUI whitbyVillageGUI = new WhitbyVillageGUI();
+                whitbyVillageGUI.setVisible(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//            GameClientUtil.endGameSequence();
         }
     }
 

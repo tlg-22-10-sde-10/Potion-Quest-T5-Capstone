@@ -1,89 +1,97 @@
 package com.potionquest.gui;
-
+import com.potionquest.game.Game;
+import com.potionquest.game.Timer;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class ForestGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatPickAndDrop;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton northButton,eastButton,westButton,southButton;
+    JButton eastButton,southButton,combatButton,dropButton,pickButton;
     JTextArea description;
-    Font titleFont = new Font("Times New Roman", Font.ROMAN_BASELINE,36);
+    EventHandler eventHandler = new EventHandler();
 
-    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
-    public ForestGUI() {
-        setTitle("FOREST");
+    public ForestGUI() throws IOException {
+//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
+
+        setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("src/main/resources/images/potionStarting.png");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/forest.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
         // player info panel
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(0,0,800,100);
-        titleNamePanel.setOpaque(true);
-//        titleNamePanel.setBackground(Color.BLUE);
+        titleNamePanel.setOpaque(false);
 
         itemsAvailablePanel = new JPanel();
-        itemsAvailablePanel.setBounds(0,50,800,40);
-        itemsAvailablePanel.setBackground(Color.BLACK);
+        itemsAvailablePanel.setBounds(0,65,800,60);
+        itemsAvailablePanel.setOpaque(false);
 
-        itemsLabel = new JLabel("ITEMS AVAILABLE: "+"{Sword, Trinket, Bread}"); //text label
-        itemsLabel.setForeground(Color.GREEN);// text color
-        itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        itemsLabel = new JLabel("ITEMS AVAILABLE: "
+                +Game.getGameInstance().getPlayer().getCurrentLocation().getItems().stream().map(p -> p.getName())
+                .collect(Collectors.toList()));
+        //text label
+        itemsLabel.setForeground(Color.BLACK);// text color
+        itemsLabel.setBackground(Color.ORANGE);
+        itemsLabel.setOpaque(true);
+        itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,18));
         itemsAvailablePanel.add(itemsLabel);
 
 
         // labels for display panel
-        timeLabel = new JLabel("TIME: "+"07:00:00"); //text label
-        timeLabel.setForeground(Color.RED);// text color
-        timeLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        timeLabel= Game.getGuiTimer().getTimeLabel();
+        timeLabel.setForeground(Color.BLACK);// text color
+        timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
-        inventoryLabel = new JLabel("INVENTORY: "+"{rope}"); //text label
-        inventoryLabel.setForeground(Color.RED);// text color
-        inventoryLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
+        inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
+        //text label
+        inventoryLabel.setForeground(Color.BLACK);// text color
+        inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
-        healthLabel = new JLabel("HEALTH: "+"100/100"); //text label
-        healthLabel.setForeground(Color.RED);// text color
-        healthLabel.setFont(new Font("Comic Sans", Font.BOLD,16));
-
+        healthLabel = new JLabel("HEALTH: "+Game.getGameInstance().getPlayer().getHealth()); //text label
+        healthLabel.setForeground(Color.BLACK);// text color
+        healthLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
 
         // titleName
-        titleNameLabel = new JLabel("WHITBY VILLAGE");
-        titleNameLabel.setForeground(Color.ORANGE);
+        titleNameLabel = new JLabel(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
+        titleNameLabel.setForeground(Color.BLUE);
+        titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
         titleNameLabel.setFont(new Font("Arial",Font.BOLD,40));
         titleNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleNamePanel.add(titleNameLabel);
 
         // status labels
-
-        // textArea for text
-        description = new JTextArea("More to come");
+        description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
-        description.setBounds(120,10,600,60);
+        description.setBackground(Color.ORANGE);
+        description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-        description.setOpaque(false);
-//        description.setBackground(Color.CYAN);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
         // creates panel for text area
         descriptionPanel = new JPanel();
-        descriptionPanel.setBounds(0,100,800,90);
-//        descriptionPanel.setBackground(Color.GREEN);
+        descriptionPanel.setBounds(10,100,800,150);
+        descriptionPanel.setOpaque(false);
         descriptionPanel.add(description);
 
         // footer for health and inventory
         footer = new JPanel();
         footer.setBounds(0,700,800,40);
-        footer.setBackground(Color.BLUE);
+        footer.setBackground(Color.ORANGE);
         footer.setLayout(new GridLayout(1, 3));
         footer.add(timeLabel);
         footer.add(inventoryLabel);
@@ -91,24 +99,53 @@ public class ForestGUI extends JFrame {
 
         // movements
         movementPanel = new JPanel();
-        movementPanel.setBounds(10, 500, 200, 180);
+        movementPanel.setBounds(10, 500, 120, 80);
         movementPanel.setBackground(Color.BLACK);
         movementPanel.setLayout(new GridLayout(2, 1));
 
-        eastButton = new JButton("GO EAST");
-        eastButton.setForeground(Color.ORANGE);
-        eastButton.setActionCommand("east");
-        eastButton.setBackground(Color.GREEN);
+        combatPickAndDrop=new JPanel();
+        combatPickAndDrop.setBounds(500, 600, 300, 40);
+        combatPickAndDrop.setBackground(Color.BLACK);
+        combatPickAndDrop.setLayout(new GridLayout(1, 3));
+
+        combatButton = new JButton("FIGHT WOLF");
+        combatButton.setBackground(Color.GREEN);
+        combatButton.setForeground(Color.GREEN);
+        combatButton.setActionCommand("fight-wolf");
+        combatButton.addActionListener(eventHandler);
+
+        pickButton = new JButton("PICK ITEM");
+        pickButton.setBackground(Color.GREEN);
+        pickButton.setForeground(Color.GREEN);
+        pickButton.setActionCommand("pick-item-forest");
+        pickButton.addActionListener(eventHandler);
+
+        dropButton = new JButton("DROP ITEM");
+        dropButton.setForeground(Color.RED);
+        dropButton.setActionCommand("drop-item-forest");
+        dropButton.setBackground(Color.GREEN);
+        dropButton.addActionListener(eventHandler);
+
+        combatPickAndDrop.add(combatButton);
+        combatPickAndDrop.add(pickButton);
+        combatPickAndDrop.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
         southButton.setForeground(Color.ORANGE);
-        southButton.setActionCommand("south");
+        southButton.setActionCommand("forest-south");
         southButton.setBackground(Color.GREEN);
 
-        //Move to location buttons
+        southButton.addActionListener(eventHandler);
+
+        eastButton = new JButton("GO EAST");
+        eastButton.setForeground(Color.ORANGE);
+        eastButton.setActionCommand("forest-east");
+        eastButton.setBackground(Color.GREEN);
+
+        eastButton.addActionListener(eventHandler);
+
         movementPanel.add(eastButton);
         movementPanel.add(southButton);
-
 
         // adds panel to the frame
         add(itemsAvailablePanel);
@@ -116,6 +153,8 @@ public class ForestGUI extends JFrame {
         add(titleNamePanel);
         add(footer);
         add(movementPanel);
+        add(combatPickAndDrop);
+
         setVisible(false);
     }
 }
