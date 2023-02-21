@@ -21,7 +21,7 @@ public class WhitbyVillageGUI extends JFrame {
         Game.createGameInstance();
         Game.getGameInstance().getPlayer().getCurrentLocation();
 
-        (new Thread(new Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+//        (new Thread(new Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);

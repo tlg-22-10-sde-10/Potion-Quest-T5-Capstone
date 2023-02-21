@@ -2,6 +2,9 @@ package com.potionquest.gui;
 
 import com.potionquest.game.Game;
 import com.potionquest.game.Item;
+import com.potionquest.game.Monster;
+import com.potionquest.game.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -60,6 +63,7 @@ public class PotionQuestGUI extends JFrame {
         window.getContentPane().setBackground(Color.BLACK);
         window.setLayout(null);
         window.setLocationRelativeTo(null);
+        window.setResizable(false);
 
         //for background pics
         PotionQuestImage backgroundImage = new PotionQuestImage("images/landing.jpg");
@@ -72,7 +76,6 @@ public class PotionQuestGUI extends JFrame {
         titleNamePanel.setOpaque(false);
         titleNameLabel = new JLabel("POTION QUEST");
         titleNamePanel.setBounds(100, 100, 600, 150);
-        //titleNamePanel.setBackground(Color.BLACK);
         titleNamePanel.setOpaque(false);
         titleNameLabel.setForeground(Color.ORANGE);
         titleNameLabel.setFont(titleFont);
@@ -101,16 +104,14 @@ public class PotionQuestGUI extends JFrame {
 
         //creates button to go in container(PANEL)
         startButtonPanel = new JPanel();
-
         startButtonPanel.setBounds(500, 620, 200, 100);
-
-        startButtonPanel.setBackground(Color.BLACK);
         startButtonPanel.setOpaque(false);
 
         //gives button a title
         startButton = new JButton("START GAME");
-        startButton.setBackground(Color.BLACK);
-        startButton.setForeground(Color.GREEN);
+        startButton.setForeground(Color.RED);
+        startButton.setBackground(Color.ORANGE);
+        startButton.setOpaque(false);
         startButton.setFont(normalFont);
 
         //onClick will call tsHandler function
@@ -266,8 +267,39 @@ public class PotionQuestGUI extends JFrame {
     public static void actionForCombatWolf() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
-        // TO-DO
-        // action for fighting wolf
+        if(!Game.getGameInstance().getPlayer().getCurrentLocation().getMonsters().isEmpty() &&Game.getGameInstance().getPlayer().getHealth()>20) {
+            Monster monster = Game.getGameInstance().getPlayer().getCurrentLocation().getMonsters().get(0);
+            Player player = Game.getGameInstance().getPlayer();
+
+            int monsterHealth = monster.getHealth();
+            int playerHealth = player.getHealth();
+
+            player.setHealth(playerHealth-10);
+            monster.setHealth(monsterHealth-10);
+
+            if(monsterHealth <= 0) {
+                Game.getGameInstance().getPlayer().getCurrentLocation().getMonsters().remove(0);
+            }
+        }
+
+        forestGUI.setVisible(false);
+        forestGUI = new ForestGUI();
+        forestGUI.setVisible(true);
+    }
+
+    public static void actionForPickItemForest() throws IOException {
+        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
+
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
+            Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
+            Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
+            Game.getGameInstance().getPlayer().getInventory().add(item);
+            forestGUI.setVisible(false);
+            forestGUI = new ForestGUI();
+            forestGUI.setVisible(true);
+        }
+
     }
 
     public static void actionForDropItemForest() throws IOException {
@@ -406,4 +438,6 @@ public class PotionQuestGUI extends JFrame {
         System.exit(0);
 
     }
+
+
 }

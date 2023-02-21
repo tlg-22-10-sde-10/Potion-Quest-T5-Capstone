@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class ForestGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatAndDrop;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatPickAndDrop;
     JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
-    JButton eastButton,southButton,combatButton,dropButton;
+    JButton eastButton,southButton,combatButton,dropButton,pickButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
 
     public ForestGUI() throws IOException {
-        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
 
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
@@ -103,10 +103,10 @@ public class ForestGUI extends JFrame {
         movementPanel.setBackground(Color.BLACK);
         movementPanel.setLayout(new GridLayout(2, 1));
 
-        combatAndDrop=new JPanel();
-        combatAndDrop.setBounds(500, 600, 220, 40);
-        combatAndDrop.setBackground(Color.BLACK);
-        combatAndDrop.setLayout(new GridLayout(1, 2));
+        combatPickAndDrop=new JPanel();
+        combatPickAndDrop.setBounds(500, 600, 300, 40);
+        combatPickAndDrop.setBackground(Color.BLACK);
+        combatPickAndDrop.setLayout(new GridLayout(1, 3));
 
         combatButton = new JButton("FIGHT WOLF");
         combatButton.setBackground(Color.GREEN);
@@ -114,14 +114,21 @@ public class ForestGUI extends JFrame {
         combatButton.setActionCommand("fight-wolf");
         combatButton.addActionListener(eventHandler);
 
+        pickButton = new JButton("PICK ITEM");
+        pickButton.setBackground(Color.GREEN);
+        pickButton.setForeground(Color.GREEN);
+        pickButton.setActionCommand("pick-item-forest");
+        pickButton.addActionListener(eventHandler);
+
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-forest");
         dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
-        combatAndDrop.add(combatButton);
-        combatAndDrop.add(dropButton);
+        combatPickAndDrop.add(combatButton);
+        combatPickAndDrop.add(pickButton);
+        combatPickAndDrop.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
         southButton.setForeground(Color.ORANGE);
@@ -146,7 +153,7 @@ public class ForestGUI extends JFrame {
         add(titleNamePanel);
         add(footer);
         add(movementPanel);
-        add(combatAndDrop);
+        add(combatPickAndDrop);
 
         setVisible(false);
     }
