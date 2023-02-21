@@ -10,7 +10,7 @@ public class WinLoseMessage {
     }
 
     private static void createWindow() {
-        JFrame frame = new JFrame("Swing Tester");
+        JFrame frame = new JFrame("WIN Tester");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         createUI(frame);
