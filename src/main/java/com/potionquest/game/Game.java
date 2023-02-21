@@ -53,9 +53,9 @@ public class Game {
             startingVillage.setItems(itemsToAddStartingVillage);
 
             Location forest = mapOfAllLocations.get("Forest");
-//            com.postionquest.game.Item rope1 = mapOfAllItems.get("Rope");
+            Item torch = mapOfAllItems.get("Torch");
             List<Item> itemsToAddForest = new ArrayList<>();
-//            itemsToAddForest.add(rope1);
+            itemsToAddForest.add(torch);
             forest.setItems(itemsToAddForest);
             Monster wolf = mapOfAllMonsters.get("Wolf");
             List<Monster> monstersToAdd = new ArrayList<>();
@@ -135,8 +135,8 @@ public class Game {
         }
     }
 
+
     public static void checkPlayerWinStatus(List<Item> inventory, Location location) throws IOException {
-        Map<String, Item> mapOfAllItems = Item.itemJsonParser();
         if (inventory.contains(Game.gameInstance.getItems().get("Potion"))) {
             if (location.getName().equalsIgnoreCase("Whitby Village")) {
                 System.out.println("You were able to save your sister in the nick of time!" +

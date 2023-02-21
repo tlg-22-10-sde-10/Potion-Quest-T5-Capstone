@@ -154,6 +154,13 @@ public class EventHandler implements ActionListener {
                 ioException.printStackTrace();
             }
 
+        }else if(actionPerformedByUser.equalsIgnoreCase("pick-item-forest")) {
+            try {
+                PotionQuestGUI.actionForPickItemForest();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
         }else if(actionPerformedByUser.equalsIgnoreCase("pick-item-mountain-pass")) {
 
             try {
