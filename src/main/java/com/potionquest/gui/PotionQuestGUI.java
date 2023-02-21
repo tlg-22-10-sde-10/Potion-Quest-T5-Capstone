@@ -257,8 +257,7 @@ public class PotionQuestGUI extends JFrame {
     public static void actionForCombatWolf() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
-        // TO-DO
-        // action for fighting wolf
+        // TODO: action for fighting wolf
     }
 
     public static void actionForDropItemForest() throws IOException {
