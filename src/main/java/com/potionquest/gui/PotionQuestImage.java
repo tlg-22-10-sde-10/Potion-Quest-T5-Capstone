@@ -4,15 +4,12 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
 
 public class PotionQuestImage extends JPanel {
 
     private final Image image;
-
 
     public PotionQuestImage(String img) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(img)) {
@@ -24,8 +21,6 @@ public class PotionQuestImage extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @Override

@@ -6,12 +6,13 @@ import java.io.IOException;
 
 public class GameLostGUI extends JFrame{
     JPanel titleNamePanel, descriptionPanel,playAndQuitPanel;
-    JLabel titleNameLabel, timeLabel;
+    JLabel titleNameLabel;
     JButton playButton,exitButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
 
     public GameLostGUI() throws IOException {
+
         setTitle("Potion Quest");
         setSize(800,800);
         setLocationRelativeTo(null);

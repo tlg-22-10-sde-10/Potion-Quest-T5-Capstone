@@ -8,7 +8,7 @@ public class Sound {
     private String soundFile;
     private Clip clip;
     public void playSound() {
-        setSoundFile("src/main/resources/Medieval_game.wav");
+        setSoundFile("/Medieval_game.wav");
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream((Objects.requireNonNull(this.getClass().getResourceAsStream(getSoundFile()))));
             setClip(AudioSystem.getClip());
@@ -18,6 +18,7 @@ public class Sound {
             final FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             volumeControl.setValue(-15.0f);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
+            throw new RuntimeException(e);
         }
     }
     public void setSoundFile(String soundFile) {
