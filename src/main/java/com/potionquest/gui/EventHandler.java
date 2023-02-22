@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class EventHandler implements ActionListener {
+
     public EventHandler() throws IOException {
     }
 

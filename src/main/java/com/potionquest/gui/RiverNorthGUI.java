@@ -56,7 +56,6 @@ public class RiverNorthGUI extends JFrame {
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
         inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
-        //text label
         inventoryLabel.setForeground(Color.BLACK);// text color
         inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -75,7 +74,6 @@ public class RiverNorthGUI extends JFrame {
         titleNamePanel.add(titleNameLabel);
 
         // status labels
-
         description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);

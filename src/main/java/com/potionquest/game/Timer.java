@@ -25,7 +25,6 @@ public class Timer implements Runnable {
             setTimeRemainingMin((totalTime - getElapsedTime()) / 1000 / 60);
         }
         if (getElapsedTime() == totalTime) {
-
             PotionQuestGUI.gameOverDueToRunningOutOfTime();
          }
 
@@ -51,7 +50,7 @@ public class Timer implements Runnable {
         return startTime;
     }
 
-    public void setStartTime(long startTime) {
+    public  void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 

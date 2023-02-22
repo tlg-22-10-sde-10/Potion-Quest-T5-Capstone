@@ -167,6 +167,7 @@ public class PotionQuestGUI extends JFrame {
         if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
             if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
                 winnerGUI.setVisible(true);
+                GuiTimer.stopTimer();
             }
         } else {
             whitByFrame = new WhitbyVillageGUI();
@@ -182,6 +183,7 @@ public class PotionQuestGUI extends JFrame {
 
         if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
             if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
+                GuiTimer.stopTimer();
                 winnerGUI.setVisible(true);
             }
         } else {
@@ -439,6 +441,7 @@ public class PotionQuestGUI extends JFrame {
         mountainPassGUI.setVisible(false);
         forestGUI.setVisible(false);
         whitByFrame.setVisible(false);
+        winnerGUI.setVisible(false);
         gameLostGUI.setVisible(true);
     }
 
@@ -446,7 +449,6 @@ public class PotionQuestGUI extends JFrame {
         winnerGUI.setVisible(false);
         Game.destroyGameInstance();
         Game.createGameInstance();
-//        window = new PotionQuestGUI();
         window.setVisible(true);
     }
 
@@ -454,9 +456,7 @@ public class PotionQuestGUI extends JFrame {
         gameLostGUI.setVisible(false);
         Game.destroyGameInstance();
         Game.createGameInstance();
-//        window = new PotionQuestGUI();
         window.setVisible(true);
-
     }
 
 }

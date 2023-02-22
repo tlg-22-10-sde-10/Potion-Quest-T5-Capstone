@@ -16,7 +16,7 @@ public class WhitbyVillageGUI extends JFrame {
     EventHandler eventHandler = new EventHandler();
 
     public WhitbyVillageGUI() throws IOException {
-        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 1L, 0L, 0L))).start();
+
         Game.createGameInstance();
         Game.getGameInstance().getPlayer().getCurrentLocation();
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());

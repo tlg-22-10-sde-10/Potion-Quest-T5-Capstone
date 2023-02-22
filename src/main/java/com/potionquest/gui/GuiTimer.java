@@ -5,12 +5,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Timer;
 import java.util.TimerTask;
 
 public class GuiTimer extends JFrame{
 
+    private static Timer timer;
     private   JLabel timeLabel;
-
 
 
     public GuiTimer() {
@@ -27,12 +28,20 @@ public class GuiTimer extends JFrame{
         setVisible(false);
 
         // Start the timer thread
-        java.util.Timer timer=new java.util.Timer();
+        timer = new Timer();
         timer.scheduleAtFixedRate(new Task(),0,1000);
 
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                PotionQuestGUI.gameOverDueToRunningOutOfTime();
+            }
+        },30000);
 
     }
-
+    public static void stopTimer() {
+        timer.cancel();
+    }
 
     private class Task extends TimerTask {
 
@@ -51,6 +60,9 @@ public class GuiTimer extends JFrame{
 
         }
     }
+
+
+
     public JLabel getTimeLabel() {
         return timeLabel;
     }

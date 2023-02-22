@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class GameLostGUI extends JFrame{
     JPanel titleNamePanel, descriptionPanel,playAndQuitPanel;
-    JLabel titleNameLabel, timeLabel;
+    JLabel titleNameLabel;
     JButton playButton,exitButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
