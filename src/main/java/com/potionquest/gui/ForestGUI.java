@@ -14,7 +14,6 @@ public class ForestGUI extends JFrame {
     EventHandler eventHandler = new EventHandler();
 
     public ForestGUI() throws IOException {
-//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
 
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 

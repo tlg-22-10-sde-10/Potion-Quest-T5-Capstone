@@ -290,9 +290,8 @@ public class PotionQuestGUI extends JFrame {
     }
 
     public static void actionForPickItemForest() throws IOException {
-        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
         if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
             Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
             Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
@@ -424,15 +423,7 @@ public class PotionQuestGUI extends JFrame {
         }
     }
 
-    public static void actionForPlayAgain() throws IOException {
-        Game.destroyGameInstance();
-        winnerGUI.setVisible(false);
-        Game.destroyGameInstance();
-        Game.createGameInstance();
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
 
-    }
 
     public static void actionForEXitGame() throws IOException {
         Game.destroyGameInstance();
@@ -451,13 +442,20 @@ public class PotionQuestGUI extends JFrame {
         gameLostGUI.setVisible(true);
     }
 
-    public static void actionForPlayAgainForGameLost() throws IOException {
+    public static void actionForPlayAgain() throws IOException {
+        winnerGUI.setVisible(false);
+        Game.destroyGameInstance();
+        Game.createGameInstance();
+//        window = new PotionQuestGUI();
+        window.setVisible(true);
+    }
 
+    public static void actionForPlayAgainForGameLost() throws IOException {
         gameLostGUI.setVisible(false);
         Game.destroyGameInstance();
         Game.createGameInstance();
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
+//        window = new PotionQuestGUI();
+        window.setVisible(true);
 
     }
 

@@ -19,7 +19,6 @@ public class RiverNorthGUI extends JFrame {
 
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
 
-        // Timer Thread
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);

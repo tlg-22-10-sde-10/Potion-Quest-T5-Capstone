@@ -12,6 +12,7 @@ public class GameLostGUI extends JFrame{
     EventHandler eventHandler = new EventHandler();
 
     public GameLostGUI() throws IOException {
+
         setTitle("Potion Quest");
         setSize(800,800);
         setLocationRelativeTo(null);
