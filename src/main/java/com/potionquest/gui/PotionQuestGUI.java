@@ -34,6 +34,7 @@ public class PotionQuestGUI extends JFrame {
     private static RiverSouthGUI riverSouthGUI;
     private static LangtoftGUI langtoftGUI;
     private static WinnerGUI winnerGUI;
+    private static GameLostGUI gameLostGUI;
 
     static {
         try {
@@ -44,6 +45,7 @@ public class PotionQuestGUI extends JFrame {
             riverSouthGUI = new RiverSouthGUI();
             langtoftGUI = new LangtoftGUI();
             winnerGUI = new WinnerGUI();
+            gameLostGUI=new GameLostGUI();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -405,5 +407,14 @@ public class PotionQuestGUI extends JFrame {
         winnerGUI.setVisible(false);
         System.exit(0);
 
+    }
+    public static void gameOverDueToRunningOutOfTime(){
+        riverSouthGUI.setVisible(false);
+        riverNorthGUI.setVisible(false);
+        langtoftGUI.setVisible(false);
+        mountainPassGUI.setVisible(false);
+        forestGUI.setVisible(false);
+        whitByFrame.setVisible(false);
+        gameLostGUI.setVisible(true);
     }
 }
