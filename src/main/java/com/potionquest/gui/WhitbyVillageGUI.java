@@ -1,7 +1,6 @@
 package com.potionquest.gui;
 
 import com.potionquest.game.Game;
-import com.potionquest.game.Timer;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -14,8 +13,6 @@ public class WhitbyVillageGUI extends JFrame {
     JTextArea description;
 
     EventHandler eventHandler = new EventHandler();
-
-    public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
 
     public WhitbyVillageGUI() throws IOException {
         Game.createGameInstance();

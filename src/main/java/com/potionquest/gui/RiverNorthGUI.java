@@ -16,9 +16,10 @@ public class RiverNorthGUI extends JFrame {
     EventHandler eventHandler = new EventHandler();
 
     public RiverNorthGUI() throws IOException {
+
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
 
-//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+        // Timer Thread
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
