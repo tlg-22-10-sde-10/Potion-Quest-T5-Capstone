@@ -21,7 +21,7 @@ public class WhitbyVillageGUI extends JFrame {
         Game.createGameInstance();
         Game.getGameInstance().getPlayer().getCurrentLocation();
 
-//        (new Thread(new Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+        (new Thread(new Timer(System.currentTimeMillis(), 1L, 0L, 0L))).start();
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
@@ -29,7 +29,7 @@ public class WhitbyVillageGUI extends JFrame {
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("images/potionStarting.png");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/whitby.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 

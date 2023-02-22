@@ -221,6 +221,14 @@ public class EventHandler implements ActionListener {
                 ioException.printStackTrace();
             }
 
+        }else if(actionPerformedByUser.equalsIgnoreCase("play-loser")) {
+
+            try {
+                PotionQuestGUI.actionForPlayAgainForGameLost();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
         }
 
     }
