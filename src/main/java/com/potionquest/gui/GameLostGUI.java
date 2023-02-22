@@ -63,7 +63,7 @@ public class GameLostGUI extends JFrame{
         playButton = new JButton("PLAY AGAIN");
         playButton.setBackground(Color.GREEN);
         playButton.setForeground(Color.GREEN);
-        playButton.setActionCommand("play");
+        playButton.setActionCommand("play-loser");
         playButton.addActionListener(eventHandler);
 
         exitButton = new JButton("EXIT");

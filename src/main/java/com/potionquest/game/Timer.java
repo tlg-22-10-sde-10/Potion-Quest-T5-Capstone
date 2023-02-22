@@ -18,7 +18,7 @@ public class Timer implements Runnable {
 
     @Override
     public void run() {
-    long totalTime = 7 * 60 * 1000;
+    long totalTime = 1 * 60 * 1000;
         while (getElapsedTime() < totalTime) {
             setElapsedTime((new Date()).getTime() - getStartTime());
             setTimeRemainingSec((totalTime - getElapsedTime()) / 1000 % 60);

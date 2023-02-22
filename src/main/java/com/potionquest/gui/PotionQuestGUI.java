@@ -436,7 +436,7 @@ public class PotionQuestGUI extends JFrame {
 
     public static void actionForEXitGame() throws IOException {
         Game.destroyGameInstance();
-        winnerGUI.setVisible(false);
+        //winnerGUI.setVisible(false);
         System.exit(0);
 
     }
@@ -449,6 +449,16 @@ public class PotionQuestGUI extends JFrame {
         forestGUI.setVisible(false);
         whitByFrame.setVisible(false);
         gameLostGUI.setVisible(true);
+    }
+
+    public static void actionForPlayAgainForGameLost() throws IOException {
+
+        gameLostGUI.setVisible(false);
+        Game.destroyGameInstance();
+        Game.createGameInstance();
+        whitByFrame = new WhitbyVillageGUI();
+        whitByFrame.setVisible(true);
+
     }
 
 }
