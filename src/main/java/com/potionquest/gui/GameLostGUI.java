@@ -19,13 +19,13 @@ public class GameLostGUI extends JFrame{
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("images/gameover.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/forest.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
         // player info panel
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(10,0,800,100);
+        titleNamePanel.setBounds(0,75,800,100);
         titleNamePanel.setOpaque(false);
 
 
@@ -57,19 +57,19 @@ public class GameLostGUI extends JFrame{
         // panel for quit and new game button
         playAndQuitPanel=new JPanel();
         playAndQuitPanel.setBounds(500, 600, 220, 40);
-        playAndQuitPanel.setBackground(Color.BLACK);
+        playAndQuitPanel.setOpaque(false);
         playAndQuitPanel.setLayout(new GridLayout(1, 2));
 
         playButton = new JButton("PLAY AGAIN");
-        playButton.setBackground(Color.GREEN);
-        playButton.setForeground(Color.GREEN);
+        playButton.setOpaque(false);
+        playButton.setForeground(Color.RED);
         playButton.setActionCommand("play-loser");
         playButton.addActionListener(eventHandler);
 
         exitButton = new JButton("EXIT");
+        exitButton.setOpaque(false);
         exitButton.setForeground(Color.RED);
         exitButton.setActionCommand("exit");
-        exitButton.setBackground(Color.GREEN);
         exitButton.addActionListener(eventHandler);
 
         playAndQuitPanel.add(playButton);

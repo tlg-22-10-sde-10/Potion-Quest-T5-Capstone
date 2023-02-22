@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class WinnerGUI extends JFrame {
     JPanel titleNamePanel, descriptionPanel,playAndQuitPanel;
-    JLabel titleNameLabel, timeLabel;
+    JLabel titleNameLabel;
     JButton playButton,exitButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
@@ -63,19 +63,17 @@ public class WinnerGUI extends JFrame {
         // panel for quit and new game button
         playAndQuitPanel=new JPanel();
         playAndQuitPanel.setBounds(500, 600, 220, 40);
-        playAndQuitPanel.setBackground(Color.BLACK);
+        playAndQuitPanel.setOpaque(false);
         playAndQuitPanel.setLayout(new GridLayout(1, 2));
 
         playButton = new JButton("PLAY AGAIN");
-        playButton.setBackground(Color.GREEN);
-        playButton.setForeground(Color.GREEN);
+        playButton.setForeground(Color.RED);
         playButton.setActionCommand("play");
         playButton.addActionListener(eventHandler);
 
         exitButton = new JButton("EXIT");
         exitButton.setForeground(Color.RED);
         exitButton.setActionCommand("exit");
-        exitButton.setBackground(Color.GREEN);
         exitButton.addActionListener(eventHandler);
 
         playAndQuitPanel.add(playButton);

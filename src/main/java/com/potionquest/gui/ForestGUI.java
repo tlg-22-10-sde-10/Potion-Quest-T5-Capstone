@@ -100,30 +100,32 @@ public class ForestGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+//        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         combatPickAndDrop=new JPanel();
         combatPickAndDrop.setBounds(500, 600, 300, 40);
-        combatPickAndDrop.setBackground(Color.BLACK);
+        combatPickAndDrop.setBackground(Color.RED);
         combatPickAndDrop.setLayout(new GridLayout(1, 3));
+        combatPickAndDrop.setOpaque(false);
 
         combatButton = new JButton("FIGHT WOLF");
-        combatButton.setBackground(Color.GREEN);
-        combatButton.setForeground(Color.GREEN);
+//        combatButton.setBackground(Color.GREEN);
+        combatButton.setForeground(Color.RED);
         combatButton.setActionCommand("fight-wolf");
         combatButton.addActionListener(eventHandler);
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+//        pickButton.setBackground(Color.GREEN);
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-forest");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-forest");
-        dropButton.setBackground(Color.GREEN);
+//        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         combatPickAndDrop.add(combatButton);
@@ -131,16 +133,16 @@ public class ForestGUI extends JFrame {
         combatPickAndDrop.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
-        southButton.setForeground(Color.ORANGE);
+        southButton.setForeground(Color.RED);
         southButton.setActionCommand("forest-south");
-        southButton.setBackground(Color.GREEN);
+//        southButton.setBackground(Color.GREEN);
 
         southButton.addActionListener(eventHandler);
 
         eastButton = new JButton("GO EAST");
-        eastButton.setForeground(Color.ORANGE);
+        eastButton.setForeground(Color.RED);
         eastButton.setActionCommand("forest-east");
-        eastButton.setBackground(Color.GREEN);
+//        eastButton.setBackground(Color.GREEN);
 
         eastButton.addActionListener(eventHandler);
 
