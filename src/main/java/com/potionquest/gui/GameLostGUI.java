@@ -19,7 +19,7 @@ public class GameLostGUI extends JFrame{
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("images/landing.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/gameover.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
@@ -30,17 +30,17 @@ public class GameLostGUI extends JFrame{
 
 
         // titleName
-        titleNameLabel = new JLabel("Time is up.");
+        titleNameLabel = new JLabel("Sorry. Your time is up.");
         titleNameLabel.setForeground(Color.RED);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
-        titleNameLabel.setFont(new Font("Arial",Font.BOLD,30));
+        titleNameLabel.setFont(new Font("Arial",Font.BOLD,40));
         titleNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleNamePanel.add(titleNameLabel);
 
         // status labels
 
-        description = new JTextArea("Time is up. Mission failed.");
+        description = new JTextArea("Unfortunately you are unable to save your sister.");
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
         description.setBounds(150,10,400,200);
@@ -50,7 +50,7 @@ public class GameLostGUI extends JFrame{
 
         // creates panel for text area
         descriptionPanel = new JPanel();
-        descriptionPanel.setBounds(0,400,800,200);
+        descriptionPanel.setBounds(0,150,800,200);
         descriptionPanel.setOpaque(false);
         descriptionPanel.add(description);
 
@@ -76,7 +76,7 @@ public class GameLostGUI extends JFrame{
         playAndQuitPanel.add(exitButton);
 
         // adds panel to the frame
-        add(descriptionPanel);
+        //add(descriptionPanel);
         add(titleNamePanel);
         add(playAndQuitPanel);
         setVisible(false);

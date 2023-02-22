@@ -26,11 +26,11 @@ public class Timer implements Runnable {
         }
         if (getElapsedTime() == totalTime) {
 
-            System.out.println();
-            System.out.println("==================================");
-            System.out.println("You ran out of time...com.postionquest.game.Game Over");
-            System.out.println("==================================");
-            System.out.println();
+//            System.out.println();
+//            System.out.println("==================================");
+//            System.out.println("You ran out of time...com.postionquest.game.Game Over");
+//            System.out.println("==================================");
+//            System.out.println();
 
             //GameClientUtil.endGameSequence();
             PotionQuestGUI.gameOverDueToRunningOutOfTime();
