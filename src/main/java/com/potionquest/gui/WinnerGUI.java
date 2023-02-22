@@ -34,11 +34,11 @@ public class WinnerGUI extends JFrame {
 
 
         // titleName
-        titleNameLabel = new JLabel("Congrats! You did it.");
+        titleNameLabel = new JLabel("Congrats! You did it!!");
         titleNameLabel.setForeground(Color.RED);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
-        titleNameLabel.setFont(new Font("Arial",Font.BOLD,30));
+        titleNameLabel.setFont(new Font("Arial",Font.BOLD,35));
         titleNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleNamePanel.add(titleNameLabel);
 
