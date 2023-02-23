@@ -45,8 +45,8 @@ public class WinnerGUI extends JFrame {
         // status labels
 
         description = new JTextArea("You were able to save your sister in the nick of time!" +
-                "Though she will take days to fully recover, her life is no longer in jeopardy!" +
-                "You go back to your regular life, content with what it brings.");
+                " Though she will take days to fully recover, her life is no longer in jeopardy!" +
+                " You go back to your regular life, content with what it brings.");
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
         description.setBounds(150,10,400,200);

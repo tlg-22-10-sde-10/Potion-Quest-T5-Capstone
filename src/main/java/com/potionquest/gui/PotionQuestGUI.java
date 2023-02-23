@@ -99,6 +99,7 @@ public class PotionQuestGUI extends JFrame {
 
         mainText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         mainText.setForeground(Color.WHITE);
+        mainText.setBackground(Color.orange);
         mainText.setOpaque(false);
         mainTextPanel.add(mainText, BorderLayout.CENTER);
         mainTextPanel.setFont(normalFont);
@@ -402,13 +403,16 @@ public class PotionQuestGUI extends JFrame {
     public static void actionForPickItemRiverSouth() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
 
+
         if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
             Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
             Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
             Game.getGameInstance().getPlayer().getInventory().add(item);
 
+
             riverSouthGUI.setVisible(false);
             riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setItemsPickedLabel(item.getName());
             riverSouthGUI.setVisible(true);
         }
     }
@@ -421,6 +425,7 @@ public class PotionQuestGUI extends JFrame {
 
             riverSouthGUI.setVisible(false);
             riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setItemsDroppedLabel(item.getName());
             riverSouthGUI.setVisible(true);
         }
     }
