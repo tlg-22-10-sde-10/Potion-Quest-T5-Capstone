@@ -167,6 +167,7 @@ public class PotionQuestGUI extends JFrame {
         if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
             if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
                 winnerGUI.setVisible(true);
+                GuiTimer.stopTimer();
             }
         } else {
             whitByFrame = new WhitbyVillageGUI();
@@ -182,6 +183,7 @@ public class PotionQuestGUI extends JFrame {
 
         if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
             if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
+                GuiTimer.stopTimer();
                 winnerGUI.setVisible(true);
             }
         } else {
@@ -290,9 +292,8 @@ public class PotionQuestGUI extends JFrame {
     }
 
     public static void actionForPickItemForest() throws IOException {
-        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
         if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
             Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
             Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
@@ -424,15 +425,7 @@ public class PotionQuestGUI extends JFrame {
         }
     }
 
-    public static void actionForPlayAgain() throws IOException {
-        Game.destroyGameInstance();
-        winnerGUI.setVisible(false);
-        Game.destroyGameInstance();
-        Game.createGameInstance();
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
 
-    }
 
     public static void actionForEXitGame() throws IOException {
         Game.destroyGameInstance();
@@ -448,17 +441,22 @@ public class PotionQuestGUI extends JFrame {
         mountainPassGUI.setVisible(false);
         forestGUI.setVisible(false);
         whitByFrame.setVisible(false);
+        winnerGUI.setVisible(false);
         gameLostGUI.setVisible(true);
     }
 
-    public static void actionForPlayAgainForGameLost() throws IOException {
+    public static void actionForPlayAgain() throws IOException {
+        winnerGUI.setVisible(false);
+        Game.destroyGameInstance();
+        Game.createGameInstance();
+        window.setVisible(true);
+    }
 
+    public static void actionForPlayAgainForGameLost() throws IOException {
         gameLostGUI.setVisible(false);
         Game.destroyGameInstance();
         Game.createGameInstance();
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
-
+        window.setVisible(true);
     }
 
 }

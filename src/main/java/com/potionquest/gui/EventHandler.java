@@ -7,6 +7,7 @@ import java.io.IOException;
 import static com.potionquest.gui.PotionQuestGUILogic.playAudio;
 
 public class EventHandler implements ActionListener {
+
     public EventHandler() throws IOException {
     }
 
