@@ -30,14 +30,19 @@ public class GuiTimer extends JFrame{
         // Start the timer thread
         timer = new Timer();
         timer.scheduleAtFixedRate(new Task(),0,1000);
-
+        //TODO: prior final release, change 30000 to 700000
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 PotionQuestGUI.gameOverDueToRunningOutOfTime();
             }
         },30000);
-
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                PotionQuestGUI.stopSoundInP();
+            }
+        },30000);
     }
     public static void stopTimer() {
         timer.cancel();
