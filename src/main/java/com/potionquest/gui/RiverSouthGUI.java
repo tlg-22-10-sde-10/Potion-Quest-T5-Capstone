@@ -124,14 +124,14 @@ public class RiverSouthGUI extends JFrame {
         northButton = new JButton("GO NORTH");
         northButton.setForeground(Color.RED);
         northButton.setActionCommand("river-south-north");
-        northButton.setBackground(Color.GREEN);
+        //northButton.setBackground(Color.GREEN);
 
         northButton.addActionListener(eventHandler);
 
         westButton = new JButton("GO WEST");
         westButton.setForeground(Color.RED);
         westButton.setActionCommand("river-south-west");
-        westButton.setBackground(Color.GREEN);
+        //westButton.setBackground(Color.GREEN);
 
         westButton.addActionListener(eventHandler);
 

@@ -185,6 +185,8 @@ public class Game {
     }
 
     public static void destroyGameInstance() {
+
+        gameInstance.getSound().getClip().stop();
         gameInstance = null;
     }
 

@@ -459,4 +459,8 @@ public class PotionQuestGUI extends JFrame {
         window.setVisible(true);
     }
 
+    public static void stopSoundInP(){
+        Game.getGameInstance().getSound().getClip().stop();
+    }
+
 }
