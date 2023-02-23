@@ -2,21 +2,23 @@ package com.potionquest.game;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
+    private static Game gameInstance = null;
+
 
     @Test
-    void createGameInstance() {
+    void createGameInstance() throws IOException {
 
-       Game gameInstance = new Game(new Player("Rupesh",100,null,null,
-                new Location("Boston",null,null)),null,null,null,null,null
-        );
+       gameInstance = Game.createGameInstance();
 
-        String  expectedName= "Rupesh";
+        String  expectedName= "Cindy";
         String  actualName = gameInstance.getPlayer().getName();
 
-        String  expectedLocation= "Boston";
+        String  expectedLocation= "Whitby Village";
         String  actualLocation = gameInstance.getPlayer().getCurrentLocation().getName();
 
         int expectedPlayerHealth = 100;

@@ -19,7 +19,7 @@ public class Game {
 
     private Game(){};
 
-    public Game(Player player, Map<String, Monster> monsters, Map<String, Item> items, Map<String, Location> locations,
+    private Game(Player player, Map<String, Monster> monsters, Map<String, Item> items, Map<String, Location> locations,
                  Map<String, Characters> characters, Sound sound) {
         setPlayer(player);
         setMonsters(monsters);
