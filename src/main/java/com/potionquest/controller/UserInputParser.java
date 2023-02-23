@@ -342,8 +342,8 @@ public class UserInputParser {
      *
      * @param userInput  - input from the user
      * @param gameClient - instance of the com.client.GameClient
-     * @throws IOException
-     * @throws InterruptedException
+     * @throws IOException - ioe exception
+     * @throws InterruptedException - interrupted exception
      */
     public static void handleUserInput(String userInput, GameClient gameClient) throws IOException, InterruptedException {
         // Scanner object for accepting user keyboard input
