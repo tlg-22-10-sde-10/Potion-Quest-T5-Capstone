@@ -18,7 +18,7 @@ public class PotionQuestGUILogic {
     }
 
     public PotionQuestGUILogic() throws IOException {
-        frame.setVisible(true);
+        //frame.setVisible(true);
     }
 
     public static void playAudio(String audioFile) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
