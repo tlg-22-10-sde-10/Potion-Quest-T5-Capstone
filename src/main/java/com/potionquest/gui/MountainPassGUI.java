@@ -80,7 +80,6 @@ public class MountainPassGUI extends JFrame {
         description.setBackground(Color.ORANGE);
         description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-//        description.setOpaque(false);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
@@ -153,7 +152,6 @@ public class MountainPassGUI extends JFrame {
         itemsDroppedPanel.setBounds(0,350,800,50);
         itemsDroppedPanel.setOpaque(false);
 
-
         add(itemsPickedPanel);
         add(itemsDroppedPanel);
 
@@ -161,7 +159,7 @@ public class MountainPassGUI extends JFrame {
     }
 
     public void setItemsPickedLabel(String itemPickedName) {
-        itemsPickedLabel = new JLabel("You picked "+ itemPickedName);
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
         itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsPickedLabel.setForeground(Color.red);
         itemsPickedLabel.setOpaque(true);
@@ -170,7 +168,7 @@ public class MountainPassGUI extends JFrame {
     }
 
     public void setItemsDroppedLabel(String itemDroppedName) {
-        itemsDropLabel = new JLabel("You dropped "+itemDroppedName);
+        itemsDropLabel = new JLabel("You dropped "+itemDroppedName+"!");
         itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsDropLabel.setForeground(Color.red);
         itemsDropLabel.setOpaque(true);

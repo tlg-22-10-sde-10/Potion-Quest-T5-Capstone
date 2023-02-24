@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class ForestGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatPickAndDrop,itemsPickedPanel,itemsDroppedPanel;
-    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,itemsDropLabel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatPickAndDrop,
+            itemsPickedPanel,itemsDroppedPanel,combatMessagePanel;
+    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,
+            itemsDropLabel,combatMessageLabel;
     JButton eastButton,southButton,combatButton,dropButton,pickButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
@@ -157,15 +159,20 @@ public class ForestGUI extends JFrame {
         itemsDroppedPanel.setBounds(0,350,800,50);
         itemsDroppedPanel.setOpaque(false);
 
+        combatMessagePanel = new JPanel();
+        combatMessagePanel.setBounds(0,400,800,50);
+        combatMessagePanel.setOpaque(false);
+
 
         add(itemsPickedPanel);
         add(itemsDroppedPanel);
+        add(combatMessagePanel);
 
         setVisible(false);
     }
 
     public void setItemsPickedLabel(String itemPickedName) {
-        itemsPickedLabel = new JLabel("You picked "+ itemPickedName);
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
         itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsPickedLabel.setForeground(Color.red);
         itemsPickedLabel.setOpaque(true);
@@ -174,7 +181,16 @@ public class ForestGUI extends JFrame {
     }
 
     public void setItemsDroppedLabel(String itemDroppedName) {
-        itemsDropLabel = new JLabel("You dropped "+itemDroppedName);
+        itemsDropLabel = new JLabel("You dropped "+itemDroppedName+"!");
+        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDropLabel.setForeground(Color.red);
+        itemsDropLabel.setOpaque(true);
+        itemsDropLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDropLabel);
+    }
+
+    public void setCombatMessageLabel(String monsterName, int health) {
+        itemsDropLabel = new JLabel("You defeated "+monsterName+", health decreased by "+ health+"!");
         itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsDropLabel.setForeground(Color.red);
         itemsDropLabel.setOpaque(true);

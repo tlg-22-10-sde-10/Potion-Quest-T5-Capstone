@@ -292,6 +292,9 @@ public class PotionQuestGUI extends JFrame {
 
         forestGUI.setVisible(false);
         forestGUI = new ForestGUI();
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getMonsters().isEmpty()) {
+            forestGUI.setCombatMessageLabel("Wolf",30);
+        }
         forestGUI.setVisible(true);
     }
 
@@ -467,7 +470,6 @@ public class PotionQuestGUI extends JFrame {
         Game.createGameInstance();
         window.setVisible(true);
     }
-
     public static void actionForPlayAgainForGameLost() throws IOException {
         gameLostGUI.setVisible(false);
         Game.destroyGameInstance();

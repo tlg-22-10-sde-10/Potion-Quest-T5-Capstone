@@ -8,15 +8,10 @@ import java.io.IOException;
 
 public class PotionQuestApplication implements Runnable {
 
-
-
     public static void main(String[] args) throws IOException {
-
         new Thread(new PotionQuestApplication()).start();
 
-
     }
-
     @Override
     public void run() {
         try {

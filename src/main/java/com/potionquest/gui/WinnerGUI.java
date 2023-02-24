@@ -32,7 +32,6 @@ public class WinnerGUI extends JFrame {
         titleNamePanel.setBounds(10,0,800,100);
         titleNamePanel.setOpaque(false);
 
-
         // titleName
         titleNameLabel = new JLabel("Congrats! You did it!!");
         titleNameLabel.setForeground(Color.RED);

@@ -158,7 +158,7 @@ public class RiverNorthGUI extends JFrame {
         setVisible(false);
     }
     public void setItemsPickedLabel(String itemPickedName) {
-        itemsPickedLabel = new JLabel("You picked "+ itemPickedName);
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
         itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsPickedLabel.setForeground(Color.red);
         itemsPickedLabel.setOpaque(true);
@@ -167,7 +167,7 @@ public class RiverNorthGUI extends JFrame {
     }
 
     public void setItemsDroppedLabel(String itemDroppedName) {
-        itemsDroppedLabel = new JLabel("You dropped "+itemDroppedName);
+        itemsDroppedLabel = new JLabel("You dropped "+itemDroppedName+"!");
         itemsDroppedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsDroppedLabel.setForeground(Color.red);
         itemsDroppedLabel.setOpaque(true);
