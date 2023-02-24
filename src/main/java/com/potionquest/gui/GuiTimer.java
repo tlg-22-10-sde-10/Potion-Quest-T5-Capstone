@@ -5,15 +5,15 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GuiTimer extends JFrame{
+public class GuiTimer extends JFrame {
     private static Timer timer;
-    private   JLabel timeLabel;
+    private JLabel timeLabel;
 
     public GuiTimer() {
         super("Countdown Timer");
 
         timeLabel = new JLabel();
-        timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
+        timeLabel.setFont(new Font("Comic Sans", Font.PLAIN, 16));
         timeLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
         add(timeLabel, BorderLayout.CENTER);
@@ -24,21 +24,22 @@ public class GuiTimer extends JFrame{
 
         // Start the timer thread
         timer = new Timer();
-        timer.scheduleAtFixedRate(new Task(),0,1000);
+        timer.scheduleAtFixedRate(new Task(), 0, 1000);
         //TODO: prior final release, change 30000 to 700000
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 PotionQuestGUI.gameOverDueToRunningOutOfTime();
             }
-        },90000);
+        }, 30000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 PotionQuestGUI.stopSoundInP();
             }
-        },30000);
+        }, 30000);
     }
+
     public static void stopTimer() {
         timer.cancel();
     }
@@ -55,7 +56,7 @@ public class GuiTimer extends JFrame{
             int minutes = seconds / 60;
             seconds = seconds % 60;
             String timeString = String.format("%d:%02d", minutes, seconds);
-            SwingUtilities.invokeLater(() -> timeLabel.setText("Time Left: "+timeString));
+            SwingUtilities.invokeLater(() -> timeLabel.setText("Time Left: " + timeString));
         }
     }
 
