@@ -15,7 +15,7 @@ public class PotionQuestApplication implements Runnable {
     @Override
     public void run() {
         try {
-            PotionQuestGUILogic potionQuestGUILogic = new PotionQuestGUILogic();
+           PotionQuestGUILogic potionQuestGUILogic = new PotionQuestGUILogic();
         } catch (IOException e) {
             e.printStackTrace();
         }

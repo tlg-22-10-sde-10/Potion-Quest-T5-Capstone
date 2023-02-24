@@ -19,22 +19,26 @@ public class UserInputParser {
     Map<String, Characters> charactersMap = Game.getGameInstance().getCharacters();
     Map<String, Monster> monsterMap = Game.getGameInstance().getMonsters();
 
-    private final ArrayList<String> movementVerbs = new ArrayList<>() {
-        {
-            add("go");
-            add("move");
-        }
-    };
-    private final ArrayList<String> interactionVerbs = new ArrayList<>() {
-        {
-            add("take");
-            add("get");
-            add("drop");
-            add("talk");
-            add("look");
-            add("heal");
-        }
-    };
+//    private final ArrayList<String> movementVerbs = new ArrayList<>() {
+//        {
+//            add("go");
+//            add("move");
+//        }
+//    };
+//    private final ArrayList<String> interactionVerbs = new ArrayList<>() {
+//        {
+//            add("take");
+//            add("get");
+//            add("drop");
+//            add("talk");
+//            add("look");
+//            add("heal");
+//        }
+//    };
+
+
+    private final List<String> movementVerbs = List.of("go", "move");
+    private final List<String> interactionVerbs = List.of("take", "get", "drop", "talk", "look", "heal");
 
     //need to update to consume JSON items instead
     private final ArrayList<String> nouns = new ArrayList<>(itemsMap.keySet());
@@ -393,11 +397,11 @@ public class UserInputParser {
     }
 
     public ArrayList<String> getMovementVerbs() {
-        return movementVerbs;
+        return (ArrayList<String>) movementVerbs;
     }
 
     public ArrayList<String> getInteractionVerbs() {
-        return interactionVerbs;
+        return (ArrayList<String>) interactionVerbs;
     }
 
     public ArrayList<String> getNouns() {

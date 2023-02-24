@@ -23,10 +23,14 @@ public class PotionQuestImage extends JPanel {
         }
     }
 
+    //helps so that there isn't an error and if there is the game will continue
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
-
+        try {
+            super.paintComponent(g);
+            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }
