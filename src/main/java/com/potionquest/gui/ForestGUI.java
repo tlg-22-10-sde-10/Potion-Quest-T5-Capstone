@@ -105,22 +105,27 @@ public class ForestGUI extends JFrame {
         movementPanel.setLayout(new GridLayout(2, 1));
 
         combatPickAndDrop=new JPanel();
-        combatPickAndDrop.setBounds(500, 600, 300, 40);
+        combatPickAndDrop.setBounds(450, 600, 300, 40);
         combatPickAndDrop.setBackground(Color.RED);
         combatPickAndDrop.setLayout(new GridLayout(1, 3));
         combatPickAndDrop.setOpaque(false);
 
         combatButton = new JButton("FIGHT WOLF");
+        Font font=combatButton.getFont();
+        Font newFont= new Font(font.getName(),font.getStyle(),11);
+        combatButton.setFont(newFont);
         combatButton.setForeground(Color.RED);
         combatButton.setActionCommand("fight-wolf");
         combatButton.addActionListener(eventHandler);
 
         pickButton = new JButton("PICK ITEM");
+        pickButton.setFont(newFont);
         pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-forest");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
+        dropButton.setFont(newFont);
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-forest");
         dropButton.addActionListener(eventHandler);
