@@ -29,6 +29,10 @@ public class Game {
         setSound(sound);
     }
 
+    public void stopGuiTimer() {
+        guiTimer.stopTimer();
+    }
+
     public static Game createGameInstance() throws IOException {
         if (gameInstance == null) {
             int playerHealth = 100;
@@ -114,10 +118,12 @@ public class Game {
             village2.addAdjacentLocation("NORTH", riverNorth);
             village2.addAdjacentLocation("SOUTH", riverSouth);
 
-
             Sound sound = new Sound();
+            sound.playSound();
             gameInstance = new Game(cindy, mapOfAllMonsters, mapOfAllItems, mapOfAllLocations, mapOfAllCharacters, sound);
             guiTimer = new GuiTimer();
+            GuiTimer.stopTimer();
+
         }
         return gameInstance;
     }
@@ -181,6 +187,8 @@ public class Game {
     }
 
     public static void destroyGameInstance() {
+
+        gameInstance.getSound().getClip().stop();
         gameInstance = null;
     }
 
@@ -202,6 +210,11 @@ public class Game {
 
     public void setSound(Sound sound) {
         this.sound = sound;
+    }
+
+    public static void createNewGuiTimer(){
+        GuiTimer.stopTimer();
+        guiTimer = new GuiTimer();
     }
 
     public static GuiTimer getGuiTimer() {

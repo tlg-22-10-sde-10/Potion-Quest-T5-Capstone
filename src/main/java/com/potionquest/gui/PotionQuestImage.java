@@ -4,15 +4,12 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-
 
 public class PotionQuestImage extends JPanel {
 
     private final Image image;
-
 
     public PotionQuestImage(String img) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(img)) {
@@ -24,14 +21,16 @@ public class PotionQuestImage extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
+    //helps so that there isn't an error and if there is the game will continue
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
-
+        try {
+            super.paintComponent(g);
+            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }

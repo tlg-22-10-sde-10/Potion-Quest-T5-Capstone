@@ -37,6 +37,7 @@ public class PotionQuestGUI extends JFrame {
     private static RiverSouthGUI riverSouthGUI;
     private static LangtoftGUI langtoftGUI;
     private static WinnerGUI winnerGUI;
+    private static GameLostGUI gameLostGUI;
 
     static {
         try {
@@ -47,6 +48,7 @@ public class PotionQuestGUI extends JFrame {
             riverSouthGUI = new RiverSouthGUI();
             langtoftGUI = new LangtoftGUI();
             winnerGUI = new WinnerGUI();
+            gameLostGUI=new GameLostGUI();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,6 +99,7 @@ public class PotionQuestGUI extends JFrame {
 
         mainText.setFont(new Font("Comic Sans", Font.BOLD, 15));
         mainText.setForeground(Color.WHITE);
+        mainText.setBackground(Color.orange);
         mainText.setOpaque(false);
         mainTextPanel.add(mainText, BorderLayout.CENTER);
         mainTextPanel.setFont(normalFont);
@@ -133,6 +136,7 @@ public class PotionQuestGUI extends JFrame {
     public static void actionForStartButton() throws IOException {
         window.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+        Game.createNewGuiTimer();
         whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
     }
@@ -165,6 +169,7 @@ public class PotionQuestGUI extends JFrame {
         if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
             if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
                 winnerGUI.setVisible(true);
+                GuiTimer.stopTimer();
             }
         } else {
             whitByFrame = new WhitbyVillageGUI();
@@ -180,6 +185,7 @@ public class PotionQuestGUI extends JFrame {
 
         if (Game.getGameInstance().getPlayer().getInventory().contains(Game.getGameInstance().getItems().get("Potion"))) {
             if (Game.getGameInstance().getPlayer().getCurrentLocation().getName().equalsIgnoreCase("Whitby Village")) {
+                GuiTimer.stopTimer();
                 winnerGUI.setVisible(true);
             }
         } else {
@@ -235,6 +241,7 @@ public class PotionQuestGUI extends JFrame {
         langtoftGUI.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
         riverSouthGUI = new RiverSouthGUI();
+
         riverSouthGUI.setVisible(true);
     }
 
@@ -247,6 +254,7 @@ public class PotionQuestGUI extends JFrame {
             Game.getGameInstance().getPlayer().getInventory().add(item);
             whitByFrame.setVisible(false);
             whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setItemsPickedLabel((item.getName()));
             whitByFrame.setVisible(true);
         }
     }
@@ -259,6 +267,7 @@ public class PotionQuestGUI extends JFrame {
 
             whitByFrame.setVisible(false);
             whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setItemsDroppedLabel(item.getName());
             whitByFrame.setVisible(true);
         }
 
@@ -284,19 +293,23 @@ public class PotionQuestGUI extends JFrame {
 
         forestGUI.setVisible(false);
         forestGUI = new ForestGUI();
+        if(Game.getGameInstance().getPlayer().getCurrentLocation().getMonsters().isEmpty()) {
+            forestGUI.setCombatMessageLabel("Wolf",30);
+        }
         forestGUI.setVisible(true);
     }
 
     public static void actionForPickItemForest() throws IOException {
-        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
-        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
+        Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
         if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
             Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
             Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
             Game.getGameInstance().getPlayer().getInventory().add(item);
+
             forestGUI.setVisible(false);
             forestGUI = new ForestGUI();
+            forestGUI.setItemsPickedLabel(item.getName());
             forestGUI.setVisible(true);
         }
 
@@ -310,6 +323,7 @@ public class PotionQuestGUI extends JFrame {
 
             forestGUI.setVisible(false);
             forestGUI = new ForestGUI();
+            forestGUI.setItemsDroppedLabel(item.getName());
             forestGUI.setVisible(true);
         }
     }
@@ -324,6 +338,7 @@ public class PotionQuestGUI extends JFrame {
 
             mountainPassGUI.setVisible(false);
             mountainPassGUI = new MountainPassGUI();
+            mountainPassGUI.setItemsPickedLabel(item.getName());
             mountainPassGUI.setVisible(true);
         }
     }
@@ -336,6 +351,7 @@ public class PotionQuestGUI extends JFrame {
 
             mountainPassGUI.setVisible(false);
             mountainPassGUI = new MountainPassGUI();
+            mountainPassGUI.setItemsDroppedLabel(item.getName());
             mountainPassGUI.setVisible(true);
         }
     }
@@ -350,6 +366,7 @@ public class PotionQuestGUI extends JFrame {
 
             langtoftGUI.setVisible(false);
             langtoftGUI = new LangtoftGUI();
+            langtoftGUI.setItemsPickedLabel(item.getName());
             langtoftGUI.setVisible(true);
         }
 
@@ -363,6 +380,7 @@ public class PotionQuestGUI extends JFrame {
 
             langtoftGUI.setVisible(false);
             langtoftGUI = new LangtoftGUI();
+            langtoftGUI.setItemsDroppedLabel(item.getName());
             langtoftGUI.setVisible(true);
         }
 
@@ -378,6 +396,7 @@ public class PotionQuestGUI extends JFrame {
 
             riverNorthGUI.setVisible(false);
             riverNorthGUI = new RiverNorthGUI();
+            riverNorthGUI.setItemsPickedLabel(item.getName());
             riverNorthGUI.setVisible(true);
         }
 
@@ -391,6 +410,7 @@ public class PotionQuestGUI extends JFrame {
 
             riverNorthGUI.setVisible(false);
             riverNorthGUI = new RiverNorthGUI();
+            riverNorthGUI.setItemsDroppedLabel(item.getName());
             riverNorthGUI.setVisible(true);
         }
 
@@ -399,13 +419,16 @@ public class PotionQuestGUI extends JFrame {
     public static void actionForPickItemRiverSouth() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
 
+
         if(Game.getGameInstance().getPlayer().getCurrentLocation().getItems().size()>0) {
             Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
             Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
             Game.getGameInstance().getPlayer().getInventory().add(item);
 
+
             riverSouthGUI.setVisible(false);
             riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setItemsPickedLabel(item.getName());
             riverSouthGUI.setVisible(true);
         }
     }
@@ -418,26 +441,49 @@ public class PotionQuestGUI extends JFrame {
 
             riverSouthGUI.setVisible(false);
             riverSouthGUI = new RiverSouthGUI();
+            riverSouthGUI.setItemsDroppedLabel(item.getName());
             riverSouthGUI.setVisible(true);
         }
     }
 
-    public static void actionForPlayAgain() throws IOException {
-        Game.destroyGameInstance();
-        winnerGUI.setVisible(false);
-        Game.destroyGameInstance();
-        Game.createGameInstance();
-        whitByFrame = new WhitbyVillageGUI();
-        whitByFrame.setVisible(true);
 
-    }
 
     public static void actionForEXitGame() throws IOException {
         Game.destroyGameInstance();
-        winnerGUI.setVisible(false);
         System.exit(0);
 
     }
+
+    public static void gameOverDueToRunningOutOfTime(){
+
+        riverSouthGUI.setVisible(false);
+        riverNorthGUI.setVisible(false);
+        langtoftGUI.setVisible(false);
+        mountainPassGUI.setVisible(false);
+        forestGUI.setVisible(false);
+        whitByFrame.setVisible(false);
+        winnerGUI.setVisible(false);
+        gameLostGUI.setVisible(true);
+    }
+
+    public static void actionForPlayAgain() throws IOException {
+        winnerGUI.setVisible(false);
+        Game.destroyGameInstance();
+        Game.createGameInstance();
+        //Game.createNewGuiTimer();
+        window.setVisible(true);
+    }
+    public static void actionForPlayAgainForGameLost() throws IOException {
+        gameLostGUI.setVisible(false);
+        Game.destroyGameInstance();
+        Game.createGameInstance();
+        window.setVisible(true);
+    }
+
+    public static void stopSoundInP(){
+        Game.getGameInstance().getSound().getClip().stop();
+    }
+
 
 
 }

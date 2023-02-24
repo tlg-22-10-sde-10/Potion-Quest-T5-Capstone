@@ -9,16 +9,16 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class RiverNorthGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
-    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel,itemsPickedPanel,itemsDroppedPanel;
+    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,itemsDroppedLabel;
     JButton westButton,southButton,pickButton,dropButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
 
     public RiverNorthGUI() throws IOException {
+
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River North"));
 
-//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
@@ -56,7 +56,6 @@ public class RiverNorthGUI extends JFrame {
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
         inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
-        //text label
         inventoryLabel.setForeground(Color.BLACK);// text color
         inventoryLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
@@ -75,7 +74,6 @@ public class RiverNorthGUI extends JFrame {
         titleNamePanel.add(titleNameLabel);
 
         // status labels
-
         description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
@@ -102,41 +100,35 @@ public class RiverNorthGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         pickAndDropPanel=new JPanel();
         pickAndDropPanel.setBounds(500, 600, 220, 40);
-        pickAndDropPanel.setBackground(Color.BLACK);
+        pickAndDropPanel.setOpaque(false);
         pickAndDropPanel.setLayout(new GridLayout(1, 2));
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-river-north");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-river-north");
-        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
-        southButton.setForeground(Color.ORANGE);
+        southButton.setForeground(Color.RED);
         southButton.setActionCommand("river-north-south");
-        southButton.setBackground(Color.GREEN);
-
         southButton.addActionListener(eventHandler);
 
         westButton = new JButton("GO WEST");
-        westButton.setForeground(Color.ORANGE);
+        westButton.setForeground(Color.RED);
         westButton.setActionCommand("river-north-west");
-        westButton.setBackground(Color.GREEN);
-
         westButton.addActionListener(eventHandler);
 
         movementPanel.add(westButton);
@@ -150,6 +142,36 @@ public class RiverNorthGUI extends JFrame {
         add(movementPanel);
         add(pickAndDropPanel);
 
+        // itemsPickedPanel
+        itemsPickedPanel = new JPanel();
+        itemsPickedPanel.setBounds(0,280,800,50);
+        itemsPickedPanel.setOpaque(false);
+
+        itemsDroppedPanel = new JPanel();
+        itemsDroppedPanel.setBounds(0,350,800,50);
+        itemsDroppedPanel.setOpaque(false);
+
+
+        add(itemsPickedPanel);
+        add(itemsDroppedPanel);
+
         setVisible(false);
+    }
+    public void setItemsPickedLabel(String itemPickedName) {
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
+        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsPickedLabel.setForeground(Color.red);
+        itemsPickedLabel.setOpaque(true);
+        itemsPickedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsPickedPanel.add(itemsPickedLabel);
+    }
+
+    public void setItemsDroppedLabel(String itemDroppedName) {
+        itemsDroppedLabel = new JLabel("You dropped "+itemDroppedName+"!");
+        itemsDroppedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDroppedLabel.setForeground(Color.red);
+        itemsDroppedLabel.setOpaque(true);
+        itemsDroppedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDroppedLabel);
     }
 }

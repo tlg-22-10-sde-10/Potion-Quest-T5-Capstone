@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static com.potionquest.gui.PotionQuestGUILogic.playAudio;
+
 public class EventHandler implements ActionListener {
+
     public EventHandler() throws IOException {
     }
 
@@ -12,6 +15,8 @@ public class EventHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String actionPerformedByUser = e.getActionCommand();
+
+
 
         if(actionPerformedByUser.equalsIgnoreCase("start")) {
 
@@ -217,6 +222,14 @@ public class EventHandler implements ActionListener {
 
             try {
                 PotionQuestGUI.actionForEXitGame();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        }else if(actionPerformedByUser.equalsIgnoreCase("play-loser")) {
+
+            try {
+                PotionQuestGUI.actionForPlayAgainForGameLost();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

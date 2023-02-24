@@ -9,15 +9,15 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class LangtoftGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
-    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel,itemsPickedPanel,itemsDroppedPanel;
+    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,itemsDropLabel;
     JButton northButton,southButton,pickButton,dropButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
 
     public LangtoftGUI() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Langtoft Village"));
-//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
@@ -102,41 +102,36 @@ public class LangtoftGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         pickAndDropPanel=new JPanel();
         pickAndDropPanel.setBounds(500, 600, 220, 40);
-        pickAndDropPanel.setBackground(Color.BLACK);
+        pickAndDropPanel.setOpaque(false);
         pickAndDropPanel.setLayout(new GridLayout(1, 2));
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-langtoft");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-langtoft");
-        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
-        southButton.setForeground(Color.ORANGE);
+        southButton.setForeground(Color.RED);
         southButton.setActionCommand("langtoft-south");
-        southButton.setBackground(Color.GREEN);
-
         southButton.addActionListener(eventHandler);
 
         northButton = new JButton("GO NORTH");
-        northButton.setForeground(Color.ORANGE);
+        northButton.setForeground(Color.RED);
         northButton.setActionCommand("langtoft-north");
-        northButton.setBackground(Color.GREEN);
-
         northButton.addActionListener(eventHandler);
 
         movementPanel.add(northButton);
@@ -150,6 +145,38 @@ public class LangtoftGUI extends JFrame {
         add(movementPanel);
         add(pickAndDropPanel);
 
+        // itemsPickedPanel
+        itemsPickedPanel = new JPanel();
+        itemsPickedPanel.setBounds(0,280,800,50);
+        itemsPickedPanel.setOpaque(false);
+
+        itemsDroppedPanel = new JPanel();
+        itemsDroppedPanel.setBounds(0,350,800,50);
+        itemsDroppedPanel.setOpaque(false);
+
+
+        add(itemsPickedPanel);
+        add(itemsDroppedPanel);
+
         setVisible(false);
+    }
+
+    public void setItemsPickedLabel(String itemPickedName) {
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
+        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsPickedLabel.setForeground(Color.red);
+        itemsPickedLabel.setOpaque(true);
+        itemsPickedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsPickedPanel.add(itemsPickedLabel);
+
+
+    }
+    public void setItemsDroppedLabel(String itemDroppedName) {
+        itemsDropLabel = new JLabel("You dropped "+itemDroppedName+"!");
+        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDropLabel.setForeground(Color.red);
+        itemsDropLabel.setOpaque(true);
+        itemsDropLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDropLabel);
     }
 }

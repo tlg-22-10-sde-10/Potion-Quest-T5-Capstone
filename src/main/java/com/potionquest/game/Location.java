@@ -164,7 +164,7 @@ public class Location {
     public String characterDescription() throws NullPointerException, IndexOutOfBoundsException {
         String str = "";
         try {
-            str = "A " + ANSI_BLUE + getCharacters().get(0).getName() + ANSI_RESET + " is here.";
+            str = "A " +getCharacters().get(0).getName()+ " is here.";
         } catch (Exception e) {
             System.out.println("");
         }

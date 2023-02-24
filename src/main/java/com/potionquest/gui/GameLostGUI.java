@@ -1,51 +1,47 @@
 package com.potionquest.gui;
 
-import com.potionquest.game.Game;
-import com.potionquest.game.Timer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
-public class WinnerGUI extends JFrame {
+public class GameLostGUI extends JFrame{
     JPanel titleNamePanel, descriptionPanel,playAndQuitPanel;
     JLabel titleNameLabel;
     JButton playButton,exitButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
 
-    public WinnerGUI() throws IOException {
-        setTitle("Winner!");
+    public GameLostGUI() throws IOException {
+
+        setTitle("Potion Quest");
         setSize(800,800);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("images/landing.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/gameover.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 
         // player info panel
         titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(10,0,800,100);
+        titleNamePanel.setBounds(0,75,800,100);
         titleNamePanel.setOpaque(false);
 
+
         // titleName
-        titleNameLabel = new JLabel("Congrats! You did it!!");
+        titleNameLabel = new JLabel("Sorry. Your time is up.");
         titleNameLabel.setForeground(Color.RED);
         titleNameLabel.setBackground(Color.ORANGE);
         titleNameLabel.setOpaque(true);
-        titleNameLabel.setFont(new Font("Arial",Font.BOLD,35));
+        titleNameLabel.setFont(new Font("Arial",Font.BOLD,40));
         titleNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleNamePanel.add(titleNameLabel);
 
         // status labels
 
-        description = new JTextArea("You were able to save your sister in the nick of time!" +
-                " Though she will take days to fully recover, her life is no longer in jeopardy!" +
-                " You go back to your regular life, content with what it brings.");
+        description = new JTextArea("Unfortunately you are unable to save your sister.");
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
         description.setBounds(150,10,400,200);
@@ -55,7 +51,7 @@ public class WinnerGUI extends JFrame {
 
         // creates panel for text area
         descriptionPanel = new JPanel();
-        descriptionPanel.setBounds(0,400,800,200);
+        descriptionPanel.setBounds(0,150,800,200);
         descriptionPanel.setOpaque(false);
         descriptionPanel.add(description);
 
@@ -66,11 +62,13 @@ public class WinnerGUI extends JFrame {
         playAndQuitPanel.setLayout(new GridLayout(1, 2));
 
         playButton = new JButton("PLAY AGAIN");
+        playButton.setOpaque(false);
         playButton.setForeground(Color.RED);
-        playButton.setActionCommand("play");
+        playButton.setActionCommand("play-loser");
         playButton.addActionListener(eventHandler);
 
         exitButton = new JButton("EXIT");
+        exitButton.setOpaque(false);
         exitButton.setForeground(Color.RED);
         exitButton.setActionCommand("exit");
         exitButton.addActionListener(eventHandler);
@@ -79,7 +77,7 @@ public class WinnerGUI extends JFrame {
         playAndQuitPanel.add(exitButton);
 
         // adds panel to the frame
-        add(descriptionPanel);
+        //add(descriptionPanel);
         add(titleNamePanel);
         add(playAndQuitPanel);
         setVisible(false);

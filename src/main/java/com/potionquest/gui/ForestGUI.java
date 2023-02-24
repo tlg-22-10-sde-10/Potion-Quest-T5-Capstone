@@ -7,14 +7,15 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class ForestGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatPickAndDrop;
-    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,combatPickAndDrop,
+            itemsPickedPanel,itemsDroppedPanel,combatMessagePanel;
+    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,
+            itemsDropLabel,combatMessageLabel;
     JButton eastButton,southButton,combatButton,dropButton,pickButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
 
     public ForestGUI() throws IOException {
-//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
 
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Forest"));
 
@@ -100,30 +101,33 @@ public class ForestGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         combatPickAndDrop=new JPanel();
-        combatPickAndDrop.setBounds(500, 600, 300, 40);
-        combatPickAndDrop.setBackground(Color.BLACK);
+        combatPickAndDrop.setBounds(450, 600, 300, 40);
+        combatPickAndDrop.setBackground(Color.RED);
         combatPickAndDrop.setLayout(new GridLayout(1, 3));
+        combatPickAndDrop.setOpaque(false);
 
         combatButton = new JButton("FIGHT WOLF");
-        combatButton.setBackground(Color.GREEN);
-        combatButton.setForeground(Color.GREEN);
+        Font font=combatButton.getFont();
+        Font newFont= new Font(font.getName(),font.getStyle(),11);
+        combatButton.setFont(newFont);
+        combatButton.setForeground(Color.RED);
         combatButton.setActionCommand("fight-wolf");
         combatButton.addActionListener(eventHandler);
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+        pickButton.setFont(newFont);
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-forest");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
+        dropButton.setFont(newFont);
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-forest");
-        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         combatPickAndDrop.add(combatButton);
@@ -131,17 +135,13 @@ public class ForestGUI extends JFrame {
         combatPickAndDrop.add(dropButton);
 
         southButton = new JButton("GO SOUTH");
-        southButton.setForeground(Color.ORANGE);
+        southButton.setForeground(Color.RED);
         southButton.setActionCommand("forest-south");
-        southButton.setBackground(Color.GREEN);
-
         southButton.addActionListener(eventHandler);
 
         eastButton = new JButton("GO EAST");
-        eastButton.setForeground(Color.ORANGE);
+        eastButton.setForeground(Color.RED);
         eastButton.setActionCommand("forest-east");
-        eastButton.setBackground(Color.GREEN);
-
         eastButton.addActionListener(eventHandler);
 
         movementPanel.add(eastButton);
@@ -155,6 +155,51 @@ public class ForestGUI extends JFrame {
         add(movementPanel);
         add(combatPickAndDrop);
 
+        // itemsPickedPanel
+        itemsPickedPanel = new JPanel();
+        itemsPickedPanel.setBounds(0,280,800,50);
+        itemsPickedPanel.setOpaque(false);
+
+        itemsDroppedPanel = new JPanel();
+        itemsDroppedPanel.setBounds(0,350,800,50);
+        itemsDroppedPanel.setOpaque(false);
+
+        combatMessagePanel = new JPanel();
+        combatMessagePanel.setBounds(0,400,800,50);
+        combatMessagePanel.setOpaque(false);
+
+
+        add(itemsPickedPanel);
+        add(itemsDroppedPanel);
+        add(combatMessagePanel);
+
         setVisible(false);
+    }
+
+    public void setItemsPickedLabel(String itemPickedName) {
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
+        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsPickedLabel.setForeground(Color.red);
+        itemsPickedLabel.setOpaque(true);
+        itemsPickedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsPickedPanel.add(itemsPickedLabel);
+    }
+
+    public void setItemsDroppedLabel(String itemDroppedName) {
+        itemsDropLabel = new JLabel("You dropped "+itemDroppedName+"!");
+        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDropLabel.setForeground(Color.red);
+        itemsDropLabel.setOpaque(true);
+        itemsDropLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDropLabel);
+    }
+
+    public void setCombatMessageLabel(String monsterName, int health) {
+        itemsDropLabel = new JLabel("You defeated "+monsterName+", health decreased by "+ health+"!");
+        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDropLabel.setForeground(Color.red);
+        itemsDropLabel.setOpaque(true);
+        itemsDropLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDropLabel);
     }
 }

@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class MountainPassGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
-    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel,itemsDroppedPanel,itemsPickedPanel;
+    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,itemsDropLabel;
     JButton northButton,eastButton,pickButton,dropButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
@@ -18,7 +18,7 @@ public class MountainPassGUI extends JFrame {
     public static final Dimension ss = Toolkit.getDefaultToolkit().getScreenSize();
     public MountainPassGUI() throws IOException {
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Mountain Pass"));
-//        (new Thread(new com.potionquest.game.Timer(System.currentTimeMillis(), 7L, 0L, 0L))).start();
+
         setTitle(Game.getGameInstance().getPlayer().getCurrentLocation().getName());
         setSize(800,800);
         setLocationRelativeTo(null);
@@ -43,7 +43,7 @@ public class MountainPassGUI extends JFrame {
                 +Game.getGameInstance().getPlayer().getCurrentLocation().getItems().stream().map(p -> p.getName())
                 .collect(Collectors.toList()));
         //text label
-        itemsLabel.setForeground(Color.BLACK);// text color
+        itemsLabel.setForeground(Color.BLACK);
         itemsLabel.setBackground(Color.ORANGE);
         itemsLabel.setOpaque(true);
         itemsLabel.setFont(new Font("Comic Sans", Font.BOLD,18));
@@ -51,9 +51,8 @@ public class MountainPassGUI extends JFrame {
 
 
         // labels for display panel
-//        timeLabel = new JLabel("TIME: "+ Timer.getTimeRemainingMin()); //text label
         timeLabel= Game.getGuiTimer().getTimeLabel();
-        timeLabel.setForeground(Color.BLACK);// text color
+        timeLabel.setForeground(Color.BLACK);
         timeLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
 
         inventoryLabel = new JLabel("INVENTORY: "+Game.getGameInstance().getPlayer().getInventory().stream().map(p -> p.getName()).collect(Collectors.toList())); //text label
@@ -76,13 +75,11 @@ public class MountainPassGUI extends JFrame {
         titleNamePanel.add(titleNameLabel);
 
         // status labels
-
         description = new JTextArea(Game.getGameInstance().getPlayer().getCurrentLocation().description());
         description.setForeground(Color.BLACK);
         description.setBackground(Color.ORANGE);
         description.setBounds(120,10,620,65);
         description.setFont(new Font("Comic Sans", Font.BOLD,16));
-//        description.setOpaque(false);
         description.setLineWrap(true);
         description.setWrapStyleWord(true);
 
@@ -104,41 +101,35 @@ public class MountainPassGUI extends JFrame {
         // movements
         movementPanel = new JPanel();
         movementPanel.setBounds(10, 500, 120, 80);
-        movementPanel.setBackground(Color.BLACK);
+        movementPanel.setOpaque(false);
         movementPanel.setLayout(new GridLayout(2, 1));
 
         pickAndDropPanel=new JPanel();
         pickAndDropPanel.setBounds(500, 600, 220, 40);
-        pickAndDropPanel.setBackground(Color.BLACK);
+        pickAndDropPanel.setOpaque(false);
         pickAndDropPanel.setLayout(new GridLayout(1, 2));
 
         pickButton = new JButton("PICK ITEM");
-        pickButton.setBackground(Color.GREEN);
-        pickButton.setForeground(Color.GREEN);
+        pickButton.setForeground(Color.RED);
         pickButton.setActionCommand("pick-item-mountain-pass");
         pickButton.addActionListener(eventHandler);
 
         dropButton = new JButton("DROP ITEM");
         dropButton.setForeground(Color.RED);
         dropButton.setActionCommand("drop-item-mountain-pass");
-        dropButton.setBackground(Color.GREEN);
         dropButton.addActionListener(eventHandler);
 
         pickAndDropPanel.add(pickButton);
         pickAndDropPanel.add(dropButton);
 
         northButton = new JButton("GO NORTH");
-        northButton.setForeground(Color.ORANGE);
+        northButton.setForeground(Color.RED);
         northButton.setActionCommand("mountain-north");
-        northButton.setBackground(Color.GREEN);
-
         northButton.addActionListener(eventHandler);
 
         eastButton = new JButton("GO EAST");
-        eastButton.setForeground(Color.ORANGE);
+        eastButton.setForeground(Color.RED);
         eastButton.setActionCommand("mountain-east");
-        eastButton.setBackground(Color.GREEN);
-
         eastButton.addActionListener(eventHandler);
 
         movementPanel.add(northButton);
@@ -152,6 +143,36 @@ public class MountainPassGUI extends JFrame {
         add(movementPanel);
         add(pickAndDropPanel);
 
+        // itemsPickedPanel
+        itemsPickedPanel = new JPanel();
+        itemsPickedPanel.setBounds(0,280,800,50);
+        itemsPickedPanel.setOpaque(false);
+
+        itemsDroppedPanel = new JPanel();
+        itemsDroppedPanel.setBounds(0,350,800,50);
+        itemsDroppedPanel.setOpaque(false);
+
+        add(itemsPickedPanel);
+        add(itemsDroppedPanel);
+
         setVisible(false);
+    }
+
+    public void setItemsPickedLabel(String itemPickedName) {
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
+        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsPickedLabel.setForeground(Color.red);
+        itemsPickedLabel.setOpaque(true);
+        itemsPickedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsPickedPanel.add(itemsPickedLabel);
+    }
+
+    public void setItemsDroppedLabel(String itemDroppedName) {
+        itemsDropLabel = new JLabel("You dropped "+itemDroppedName+"!");
+        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDropLabel.setForeground(Color.red);
+        itemsDropLabel.setOpaque(true);
+        itemsDropLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDropLabel);
     }
 }
