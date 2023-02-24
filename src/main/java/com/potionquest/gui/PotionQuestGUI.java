@@ -240,6 +240,7 @@ public class PotionQuestGUI extends JFrame {
         langtoftGUI.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("River South"));
         riverSouthGUI = new RiverSouthGUI();
+
         riverSouthGUI.setVisible(true);
     }
 
@@ -252,6 +253,7 @@ public class PotionQuestGUI extends JFrame {
             Game.getGameInstance().getPlayer().getInventory().add(item);
             whitByFrame.setVisible(false);
             whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setItemsPickedLabel((item.getName()));
             whitByFrame.setVisible(true);
         }
     }
@@ -264,6 +266,7 @@ public class PotionQuestGUI extends JFrame {
 
             whitByFrame.setVisible(false);
             whitByFrame = new WhitbyVillageGUI();
+            whitByFrame.setItemsDroppedLabel(item.getName());
             whitByFrame.setVisible(true);
         }
 
@@ -299,8 +302,10 @@ public class PotionQuestGUI extends JFrame {
             Item item = Game.getGameInstance().getPlayer().getCurrentLocation().getItems().get(0);
             Game.getGameInstance().getPlayer().getCurrentLocation().getItems().remove(item);
             Game.getGameInstance().getPlayer().getInventory().add(item);
+
             forestGUI.setVisible(false);
             forestGUI = new ForestGUI();
+            forestGUI.setItemsPickedLabel(item.getName());
             forestGUI.setVisible(true);
         }
 
@@ -314,6 +319,7 @@ public class PotionQuestGUI extends JFrame {
 
             forestGUI.setVisible(false);
             forestGUI = new ForestGUI();
+            forestGUI.setItemsDroppedLabel(item.getName());
             forestGUI.setVisible(true);
         }
     }
@@ -328,6 +334,7 @@ public class PotionQuestGUI extends JFrame {
 
             mountainPassGUI.setVisible(false);
             mountainPassGUI = new MountainPassGUI();
+            mountainPassGUI.setItemsPickedLabel(item.getName());
             mountainPassGUI.setVisible(true);
         }
     }
@@ -340,6 +347,7 @@ public class PotionQuestGUI extends JFrame {
 
             mountainPassGUI.setVisible(false);
             mountainPassGUI = new MountainPassGUI();
+            mountainPassGUI.setItemsDroppedLabel(item.getName());
             mountainPassGUI.setVisible(true);
         }
     }
@@ -354,6 +362,7 @@ public class PotionQuestGUI extends JFrame {
 
             langtoftGUI.setVisible(false);
             langtoftGUI = new LangtoftGUI();
+            langtoftGUI.setItemsPickedLabel(item.getName());
             langtoftGUI.setVisible(true);
         }
 
@@ -367,6 +376,7 @@ public class PotionQuestGUI extends JFrame {
 
             langtoftGUI.setVisible(false);
             langtoftGUI = new LangtoftGUI();
+            langtoftGUI.setItemsDroppedLabel(item.getName());
             langtoftGUI.setVisible(true);
         }
 
@@ -382,6 +392,7 @@ public class PotionQuestGUI extends JFrame {
 
             riverNorthGUI.setVisible(false);
             riverNorthGUI = new RiverNorthGUI();
+            riverNorthGUI.setItemsPickedLabel(item.getName());
             riverNorthGUI.setVisible(true);
         }
 
@@ -395,6 +406,7 @@ public class PotionQuestGUI extends JFrame {
 
             riverNorthGUI.setVisible(false);
             riverNorthGUI = new RiverNorthGUI();
+            riverNorthGUI.setItemsDroppedLabel(item.getName());
             riverNorthGUI.setVisible(true);
         }
 
@@ -434,7 +446,6 @@ public class PotionQuestGUI extends JFrame {
 
     public static void actionForEXitGame() throws IOException {
         Game.destroyGameInstance();
-        //winnerGUI.setVisible(false);
         System.exit(0);
 
     }
@@ -467,5 +478,7 @@ public class PotionQuestGUI extends JFrame {
     public static void stopSoundInP(){
         Game.getGameInstance().getSound().getClip().stop();
     }
+
+
 
 }

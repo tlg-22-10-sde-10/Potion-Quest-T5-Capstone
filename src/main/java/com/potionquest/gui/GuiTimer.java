@@ -36,7 +36,7 @@ public class GuiTimer extends JFrame{
             public void run() {
                 PotionQuestGUI.gameOverDueToRunningOutOfTime();
             }
-        },30000);
+        },90000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {

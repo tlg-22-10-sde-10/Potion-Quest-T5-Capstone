@@ -165,7 +165,7 @@ public class RiverSouthGUI extends JFrame {
 
     public void setItemsPickedLabel(String itemPickedName) {
         itemsPickedLabel = new JLabel("You picked "+ itemPickedName);
-        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
+        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsPickedLabel.setForeground(Color.red);
         itemsPickedLabel.setOpaque(true);
         itemsPickedLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,7 +174,7 @@ public class RiverSouthGUI extends JFrame {
 
     public void setItemsDroppedLabel(String itemDroppedName) {
         itemsDropLabel = new JLabel("You dropped "+itemDroppedName);
-        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,16));
+        itemsDropLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
         itemsDropLabel.setForeground(Color.red);
         itemsDropLabel.setOpaque(true);
         itemsDropLabel.setHorizontalAlignment(SwingConstants.CENTER);
