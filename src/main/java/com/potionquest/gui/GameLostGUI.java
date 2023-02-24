@@ -20,7 +20,7 @@ public class GameLostGUI extends JFrame{
         setLayout(null);
         setResizable(false);
 
-        PotionQuestImage backgroundImage = new PotionQuestImage("images/forest.jpg");
+        PotionQuestImage backgroundImage = new PotionQuestImage("images/gameover.jpg");
         backgroundImage.setBounds(0,0,this.getWidth(),this.getHeight());
         setContentPane(backgroundImage);
 

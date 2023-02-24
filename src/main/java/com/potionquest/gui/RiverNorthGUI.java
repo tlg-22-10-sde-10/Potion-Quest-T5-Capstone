@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class RiverNorthGUI extends JFrame {
-    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel;
-    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel;
+    JPanel titleNamePanel, footer,descriptionPanel,itemsAvailablePanel, movementPanel,pickAndDropPanel,itemsPickedPanel,itemsDroppedPanel;
+    JLabel titleNameLabel, timeLabel, inventoryLabel, healthLabel,itemsLabel,itemsPickedLabel,itemsDroppedLabel;
     JButton westButton,southButton,pickButton,dropButton;
     JTextArea description;
     EventHandler eventHandler = new EventHandler();
@@ -142,6 +142,36 @@ public class RiverNorthGUI extends JFrame {
         add(movementPanel);
         add(pickAndDropPanel);
 
+        // itemsPickedPanel
+        itemsPickedPanel = new JPanel();
+        itemsPickedPanel.setBounds(0,280,800,50);
+        itemsPickedPanel.setOpaque(false);
+
+        itemsDroppedPanel = new JPanel();
+        itemsDroppedPanel.setBounds(0,350,800,50);
+        itemsDroppedPanel.setOpaque(false);
+
+
+        add(itemsPickedPanel);
+        add(itemsDroppedPanel);
+
         setVisible(false);
+    }
+    public void setItemsPickedLabel(String itemPickedName) {
+        itemsPickedLabel = new JLabel("You picked "+ itemPickedName+"!");
+        itemsPickedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsPickedLabel.setForeground(Color.red);
+        itemsPickedLabel.setOpaque(true);
+        itemsPickedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsPickedPanel.add(itemsPickedLabel);
+    }
+
+    public void setItemsDroppedLabel(String itemDroppedName) {
+        itemsDroppedLabel = new JLabel("You dropped "+itemDroppedName+"!");
+        itemsDroppedLabel.setFont(new Font("Comic Sans", Font.PLAIN,20));
+        itemsDroppedLabel.setForeground(Color.red);
+        itemsDroppedLabel.setOpaque(true);
+        itemsDroppedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        itemsDroppedPanel.add(itemsDroppedLabel);
     }
 }

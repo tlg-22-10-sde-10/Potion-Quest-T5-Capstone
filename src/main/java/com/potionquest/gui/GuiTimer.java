@@ -1,18 +1,13 @@
 package com.potionquest.gui;
 
-
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GuiTimer extends JFrame{
-
     private static Timer timer;
     private   JLabel timeLabel;
-
 
     public GuiTimer() {
         super("Countdown Timer");
@@ -36,7 +31,7 @@ public class GuiTimer extends JFrame{
             public void run() {
                 PotionQuestGUI.gameOverDueToRunningOutOfTime();
             }
-        },30000);
+        },90000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -61,12 +56,8 @@ public class GuiTimer extends JFrame{
             seconds = seconds % 60;
             String timeString = String.format("%d:%02d", minutes, seconds);
             SwingUtilities.invokeLater(() -> timeLabel.setText("Time Left: "+timeString));
-
-
         }
     }
-
-
 
     public JLabel getTimeLabel() {
         return timeLabel;
