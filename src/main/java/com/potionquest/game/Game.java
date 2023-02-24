@@ -122,6 +122,8 @@ public class Game {
             sound.playSound();
             gameInstance = new Game(cindy, mapOfAllMonsters, mapOfAllItems, mapOfAllLocations, mapOfAllCharacters, sound);
             guiTimer = new GuiTimer();
+            GuiTimer.stopTimer();
+
         }
         return gameInstance;
     }
@@ -208,6 +210,11 @@ public class Game {
 
     public void setSound(Sound sound) {
         this.sound = sound;
+    }
+
+    public static void createNewGuiTimer(){
+        GuiTimer.stopTimer();
+        guiTimer = new GuiTimer();
     }
 
     public static GuiTimer getGuiTimer() {

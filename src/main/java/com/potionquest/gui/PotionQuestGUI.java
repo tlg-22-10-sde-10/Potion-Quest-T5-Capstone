@@ -135,6 +135,7 @@ public class PotionQuestGUI extends JFrame {
     public static void actionForStartButton() throws IOException {
         window.setVisible(false);
         Game.getGameInstance().getPlayer().setCurrentLocation(Game.getLocations().get("Whitby Village"));
+        Game.createNewGuiTimer();
         whitByFrame = new WhitbyVillageGUI();
         whitByFrame.setVisible(true);
     }
@@ -435,6 +436,7 @@ public class PotionQuestGUI extends JFrame {
     }
 
     public static void gameOverDueToRunningOutOfTime(){
+
         riverSouthGUI.setVisible(false);
         riverNorthGUI.setVisible(false);
         langtoftGUI.setVisible(false);
@@ -449,6 +451,7 @@ public class PotionQuestGUI extends JFrame {
         winnerGUI.setVisible(false);
         Game.destroyGameInstance();
         Game.createGameInstance();
+        //Game.createNewGuiTimer();
         window.setVisible(true);
     }
 
