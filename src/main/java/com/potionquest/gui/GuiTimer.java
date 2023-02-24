@@ -1,7 +1,10 @@
 package com.potionquest.gui;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,7 +38,7 @@ public class GuiTimer extends JFrame {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                PotionQuestGUI.stopSoundInP();
+                    PotionQuestGUI.stopSoundInP();
             }
         }, 420000);
     }
